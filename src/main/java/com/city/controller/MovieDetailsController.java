@@ -99,7 +99,8 @@ public class MovieDetailsController {
 	public String add(
 			@ModelAttribute("frmObject") @Valid MovieDetails frmObject,
 			BindingResult result, ModelMap map) {
-
+		frmObject.setAvalStatus('Y');
+		frmObject.setUplodReq('Y');
 		validator.validate(frmObject, result);
 		if (result.hasErrors()) {
 			map.put("requestMapping", REQUESTMAPPING);
