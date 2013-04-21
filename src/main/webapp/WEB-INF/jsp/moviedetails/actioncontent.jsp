@@ -75,7 +75,7 @@
 
 <div id="content">
 	<div id="column1">
-		<h3>To Add New Movie</h3>
+		<h3>${fromName}</h3>
 		<form:form method="post" action="${action}" commandName="frmObject" name="frm" id="frm" class="formular">
 			
 			<table><tr><form:errors path="*" cssClass="error" element="div" /></tr></table>
@@ -93,7 +93,7 @@
 				<tr>
 					<td><form:label path="avalStatus"><spring:message code="label.avalStatus" /></form:label></td>
 					<td>
-					<form:select path="avalStatus">
+					<form:select path="avalStatus" disabled="${disabled}">
 	                  <form:option value="Y" label="Yes" />
 	                  <form:option value="N" label="No" />
 	                </form:select>
@@ -233,7 +233,7 @@
 				<tr>
 					<td><form:label path="uplodReq"><spring:message code="label.uplodReq" /></form:label></td>
 					<td>					
-						<form:select path="uplodReq">
+						<form:select path="uplodReq" disabled="${disabled}">
 		                  <form:option value="Y" label="Yes" />
 		                  <form:option value="N" label="No" />
 		                </form:select>

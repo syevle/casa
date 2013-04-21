@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.hibernate.criterion.Criterion;
@@ -261,14 +260,18 @@ public class MovieDetailsController {
 	public String add(Map<String, Object> map) {
 		frmObject = getFromObject();
 		frmObject.setId("DVD"+nextMovieId().toString());
+		frmObject.setAvalStatus('Y');
+		frmObject.setUplodReq('Y');
 		map.put("frmObject", frmObject);
 		map.put("requestMapping", REQUESTMAPPING);
 		map.put("action", Constant.ROOTPATH + PATH + Constant.ADD);
+		map.put("fromName", "To Add New Movie");
 		map.put("command", "add");
 		map.put("creatorList", creatorList());
 		map.put("directorList", directorList());
 		map.put("starcastList", starcastList());
 		map.put("readonly", "false");
+		map.put("disabled", "true");
 		return PATH + Constant.ACTION;
 	}
 
@@ -285,14 +288,17 @@ public class MovieDetailsController {
 				map.put("requestMapping", REQUESTMAPPING);
 				map.put("command", "update");
 				map.put("readonly", "false");
+				map.put("fromName", "To Update Movie");
 				map.put("creatorList", creatorList());
 				map.put("directorList", directorList());
 				map.put("starcastList", starcastList());
 			} else if (command.equalsIgnoreCase("delete")) {
 				map.put("requestMapping", REQUESTMAPPING);
+				map.put("fromName", "To Delete Movie");
 				map.put("command", "delete");
 				map.put("readonly", "true");
 			} else {
+				map.put("fromName", "Movie Details");
 				map.put("command", "get");
 				map.put("readonly", "true");
 			}
