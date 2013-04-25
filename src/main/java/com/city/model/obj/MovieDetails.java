@@ -118,6 +118,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setMediaFormat(String mediaFormat) {
+		if(mediaFormat !=null){
+			mediaFormat = mediaFormat.replace(","," ");
+		}
 		this.mediaFormat = mediaFormat;
 	}
 
@@ -127,6 +130,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setLanguages(String languages) {
+		if(languages !=null){
+			languages = languages.replace(","," ");
+		}
 		this.languages = languages;
 	}
 
@@ -136,6 +142,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setMovName(String movName) {
+		if(movName !=null){
+			movName = movName.replace(","," ");
+		}
 		this.movName = movName;
 	}
 
@@ -157,6 +166,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setStarcastName1(String starcastName1) {
+		if(starcastName1 !=null){
+			starcastName1 = starcastName1.replace(","," ");
+		}
 		this.starcastName1 = starcastName1;
 	}
 
@@ -166,6 +178,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setStarcastName2(String starcastName2) {
+		if(starcastName2 !=null){
+			starcastName2 = starcastName2.replace(","," ");
+		}
 		this.starcastName2 = starcastName2;
 	}
 
@@ -175,6 +190,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setStarcastName3(String starcastName3) {
+		if(starcastName3 !=null){
+			starcastName3 = starcastName3.replace(","," ");
+		}
 		this.starcastName3 = starcastName3;
 	}
 
@@ -184,6 +202,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setStarcastName4(String starcastName4) {
+		if(starcastName4 !=null){
+			starcastName4 = starcastName4.replace(","," ");
+		}
 		this.starcastName4 = starcastName4;
 	}
 
@@ -193,6 +214,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setStarcastName5(String starcastName5) {
+		if(starcastName5 !=null){
+			starcastName5 = starcastName5.replace(","," ");
+		}
 		this.starcastName5 = starcastName5;
 	}
 
@@ -202,6 +226,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setStarcastName6(String starcastName6) {
+		if(starcastName6 !=null){
+			starcastName6 = starcastName6.replace(","," ");
+		}
 		this.starcastName6 = starcastName6;
 	}
 
@@ -211,6 +238,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setDirector1(String director1) {
+		if(director1 !=null){
+			director1 = director1.replace(","," ");
+		}
 		this.director1 = director1;
 	}
 
@@ -220,6 +250,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setDirector2(String director2) {
+		if(director2 !=null){
+			director2 = director2.replace(","," ");
+		}
 		this.director2 = director2;
 	}
 
@@ -229,6 +262,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setDirector3(String director3) {
+		if(director3 !=null){
+			director3 = director3.replace(","," ");
+		}
 		this.director3 = director3;
 	}
 
@@ -238,6 +274,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setCreator1(String creator1) {
+		if(creator1 !=null){
+			creator1 = creator1.replace(","," ");
+		}
 		this.creator1 = creator1;
 	}
 
@@ -247,6 +286,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setCreator2(String creator2) {
+		if(creator2 !=null){
+			creator2 = creator2.replace(","," ");
+		}
 		this.creator2 = creator2;
 	}
 
@@ -256,6 +298,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setCreator3(String creator3) {
+		if(creator3 !=null){
+			creator3 = creator3.replace(","," ");
+		}
 		this.creator3 = creator3;
 	}
 
@@ -265,6 +310,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setGenre1(String genre1) {
+		if(genre1 !=null){
+			genre1 = genre1.replace(","," ");
+		}
 		this.genre1 = genre1;
 	}
 
@@ -274,6 +322,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setGenre2(String genre2) {
+		if(genre2 !=null){
+			genre2 = genre2.replace(","," ");
+		}
 		this.genre2 = genre2;
 	}
 
@@ -283,6 +334,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setGenre3(String genre3) {
+		if(genre3 !=null){
+			genre3 = genre3.replace(","," ");
+		}
 		this.genre3 = genre3;
 	}
 
@@ -292,6 +346,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setGenreExtra(String genreExtra) {
+		if(genreExtra !=null){
+			genreExtra = genreExtra.replace(","," ");
+		}
 		this.genreExtra = genreExtra;
 	}
 
@@ -301,6 +358,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setCountry(String country) {
+		if(country !=null){
+			country = country.replace(","," ");
+		}
 		this.country = country;
 	}
 
@@ -310,6 +370,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setTagLine(String tagLine) {
+		if(tagLine !=null){
+			tagLine = tagLine.replace(","," ");
+		}
 		this.tagLine = tagLine;
 	}
 
@@ -319,6 +382,9 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setDvdLocation(String dvdLocation) {
+		if(dvdLocation !=null){
+			dvdLocation = dvdLocation.replace(","," ");
+		}
 		this.dvdLocation = dvdLocation;
 	}
 

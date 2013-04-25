@@ -25,7 +25,13 @@
 			document.frm.submit();
 		}
 	}
-
+	function isAdd() {
+		var conf = "";
+		conf = confirm("Are you sure,you want to Add this Movie Details?")
+		if (conf == true) {
+			document.frm.submit();
+		}
+	}
 	function generateId(data) {
 		var id = document.getElementById("id").value
 		document.getElementById("id").value = data.value + id.substring(3);

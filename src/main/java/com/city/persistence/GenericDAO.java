@@ -169,4 +169,5 @@ public interface GenericDAO<T, PK extends Serializable> {
      * @return list of objects
      */
     List<T> findByCriteria(List<Criterion> criterion);
+   // public Session getSession();
 }
