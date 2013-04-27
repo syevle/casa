@@ -200,11 +200,10 @@ public class MovieDetailsController {
 					.toString();
 		}
 	}
-protected String genreAllData() {
-		
+	private String genreAllData() {
 		StringBuffer generString = new StringBuffer();
 		for (String gener : genreData()) {
-			generString.append("\"").append(gener)
+			generString.append("\"").append(gener.toString())
 					.append("\"").append(",");
 		}
 		if (generString.length() == 0) {
@@ -214,6 +213,19 @@ protected String genreAllData() {
 					.toString();
 		}
 	}
+/*protected String genreAllData() {
+		
+		StringBuffer generString = new StringBuffer();
+		for (String gener : genreData()) {
+			generString.append("\"").append(gener).append("\"").append(",");
+		}
+		if (generString.length() == 0) {
+			return generString.toString();
+		} else {
+			return generString.substring(0, generString.length() - 1)
+					.toString();
+		}
+	}*/
 	public Integer nextMovieId(){
 		Integer id = null;
 		List<Object> list = HibernateDaoFactory.getMovieDetailsDao().getNativeQuery("select TRAN_SEQ.nextval as IDs from dual");
@@ -281,7 +293,7 @@ protected String genreAllData() {
 		//map.put("id", movieCode);
 		map.put("movieCodeList", movieCodeList());
 		map.put("movieNameList", movieNameList());
-		map.put("starcastAllList", starcastAllList());
+		map.put("starcastList", starcastList());
 		map.put("genreAllList", genreAllData());
 		map.put("list", movieDetailsList);
 		map.put("frmObject", frmObject);
@@ -533,7 +545,7 @@ protected String genreAllData() {
 		list.addAll(languages);
 		return list;
 	}*/
-	private List<String> starcastAllList() {
+	/*private List<String> starcastAllList() {
 		
 		List<String> list = new LinkedList<String>();
 		list.add("SELECT");
@@ -544,5 +556,5 @@ protected String genreAllData() {
 		}
 		list.addAll(languages);
 		return list;
-	}
+	}*/
 }

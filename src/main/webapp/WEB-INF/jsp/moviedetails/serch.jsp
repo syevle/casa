@@ -33,10 +33,9 @@
 	      source: availableTags
 	    });
 	  }); 
-  
- $(function() {
+  $(function() {
 	    var availableTags = [
-	      ${starcastAllList}
+	      ${starcastList}
 	    ];
 	    $( "#starcastName1" ).autocomplete({
 	      source: availableTags
@@ -104,7 +103,7 @@
 
   </script>
  
-<form:form method="GET" action="${requestController}/list" commandName="frmObject" name="frm" id="frm">
+<form:form method="POST" action="${requestController}/list" commandName="frmObject" name="frm" id="frm">
 	<table>
 		<tr>
 			<td><form:label path="id"><spring:message code="label.movCode" /></form:label>
