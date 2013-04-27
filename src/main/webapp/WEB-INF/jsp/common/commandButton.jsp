@@ -23,9 +23,5 @@
 		</td>
 		<td><a href="${requestController}/list"><input type="button" class="styled-button-1" value="Cancel" /></a>
 		</td>
-		<!-- <td><input class="styled-button-1" type="submit"
-			value="Close all prompt"
-			onclick="$.validationEngine.closePrompt('.formError',true)" />
-		</td> -->
 	</c:if>
 </tr>

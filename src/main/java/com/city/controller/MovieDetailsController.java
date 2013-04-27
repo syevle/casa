@@ -172,6 +172,48 @@ public class MovieDetailsController {
 	}
 	
 	
+	private String movieCodeList() {
+		List<MovieDetails> movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findAll();
+		StringBuffer movieDetailsString = new StringBuffer();
+		for (MovieDetails movieDetails : movieDetailsList) {
+			movieDetailsString.append("\"").append(movieDetails.getId())
+					.append("\"").append(",");
+		}
+		if (movieDetailsString.length() == 0) {
+			return movieDetailsString.toString();
+		} else {
+			return movieDetailsString.substring(0, movieDetailsString.length() - 1)
+					.toString();
+		}
+	}
+	private String movieNameList() {
+		List<MovieDetails> movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findAll();
+		StringBuffer movieDetailsString = new StringBuffer();
+		for (MovieDetails movieDetails : movieDetailsList) {
+			movieDetailsString.append("\"").append(movieDetails.getMovName())
+					.append("\"").append(",");
+		}
+		if (movieDetailsString.length() == 0) {
+			return movieDetailsString.toString();
+		} else {
+			return movieDetailsString.substring(0, movieDetailsString.length() - 1)
+					.toString();
+		}
+	}
+protected String genreAllData() {
+		
+		StringBuffer generString = new StringBuffer();
+		for (String gener : genreData()) {
+			generString.append("\"").append(gener)
+					.append("\"").append(",");
+		}
+		if (generString.length() == 0) {
+			return generString.toString();
+		} else {
+			return generString.substring(0, generString.length() - 1)
+					.toString();
+		}
+	}
 	public Integer nextMovieId(){
 		Integer id = null;
 		List<Object> list = HibernateDaoFactory.getMovieDetailsDao().getNativeQuery("select TRAN_SEQ.nextval as IDs from dual");
@@ -184,13 +226,13 @@ public class MovieDetailsController {
 	@RequestMapping(value = Constant.LIST, method = RequestMethod.POST)
 	public String list(Map<String, Object> map,ModelMap model,@ModelAttribute("frmObject") MovieDetails frmObject) {
 		// below line important it.
-		if(!frmObject.getId().equalsIgnoreCase("select"))
+		if(frmObject.getId() !=null)
 			map.put("id", frmObject.getId());
-		if(!frmObject.getMovName().equalsIgnoreCase("select"))
+		if(frmObject.getMovName() != null)
 			map.put("movName", frmObject.getMovName());
-		if(!frmObject.getStarcastName1().equalsIgnoreCase("select"))
+		if(frmObject.getStarcastName1() !=null)
 			map.put("starcastName1", frmObject.getStarcastName1());
-		if(!frmObject.getGenre1().equalsIgnoreCase("select"))
+		if(frmObject.getGenre1() != null)
 			map.put("genre1", frmObject.getGenre1());
 		return Constant.REDIRECT + PATH + Constant.LIST;
 	}
@@ -240,7 +282,7 @@ public class MovieDetailsController {
 		map.put("movieCodeList", movieCodeList());
 		map.put("movieNameList", movieNameList());
 		map.put("starcastAllList", starcastAllList());
-		map.put("genreList", genreData());
+		map.put("genreAllList", genreAllData());
 		map.put("list", movieDetailsList);
 		map.put("frmObject", frmObject);
 		map.put("readonly", readOnly);
@@ -468,7 +510,7 @@ public class MovieDetailsController {
 		return list;
 	}
 	
-	protected List<String> movieCodeList() {
+	/*protected List<String> movieCodeList() {
 		List<String> list = new LinkedList<String>();
 		list.add("SELECT");
 		Set<String> languages = new TreeSet<String>();
@@ -490,7 +532,7 @@ public class MovieDetailsController {
 		}
 		list.addAll(languages);
 		return list;
-	}
+	}*/
 	private List<String> starcastAllList() {
 		
 		List<String> list = new LinkedList<String>();

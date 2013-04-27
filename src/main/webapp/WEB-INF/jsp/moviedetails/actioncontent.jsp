@@ -87,7 +87,7 @@
 					<td><form:input path="id" readonly="true" /></td>
 				
 					<td><form:label path="movName"><spring:message code="label.movName"  /></form:label></td>
-					<td><form:input path="movName" readonly="${readonly}"  size="50" /></td>
+					<td><form:input path="movName" readonly="${readonly}"  size="50" onblur="javascript:validateSize('movName',this.value,50);" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="avalStatus"><spring:message code="label.avalStatus" /></form:label></td>
@@ -123,45 +123,45 @@
 				</tr>
 				<tr>
 					<td><form:label path="starcastName1"><spring:message code="label.starcastName1" /></form:label></td>
-					<td><form:input path="starcastName1" readonly="${readonly}" /></td>
+					<td><form:input path="starcastName1" readonly="${readonly}" onblur="javascript:validateSize('starcastName1',this.value,30);" /></td>
 				
 					<td><form:label path="starcastName2"><spring:message code="label.starcastName2" /></form:label></td>
-					<td><form:input path="starcastName2" readonly="${readonly}"  /></td>
+					<td><form:input path="starcastName2" readonly="${readonly}" onblur="javascript:validateSize('starcastName2',this.value,30);" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="starcastName3"><spring:message code="label.starcastName3" /></form:label></td>
-					<td><form:input path="starcastName3" readonly="${readonly}"  /></td>
+					<td><form:input path="starcastName3" readonly="${readonly}" onblur="javascript:validateSize('starcastName3',this.value,30);" /></td>
 				
 					<td><form:label path="starcastName4"><spring:message code="label.starcastName4" /></form:label></td>
-					<td><form:input path="starcastName4" readonly="${readonly}" /></td>
+					<td><form:input path="starcastName4" readonly="${readonly}" onblur="javascript:validateSize('starcastName4',this.value,30);" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="starcastName5"><spring:message code="label.starcastName5" /></form:label></td>
-					<td><form:input path="starcastName5" readonly="${readonly}"  /></td>
+					<td><form:input path="starcastName5" readonly="${readonly}" onblur="javascript:validateSize('starcastName5',this.value,30);" /></td>
 				
 					<td><form:label path="starcastName6"><spring:message code="label.starcastName6" /></form:label></td>
-					<td><form:input path="starcastName6" readonly="${readonly}"  /></td>
+					<td><form:input path="starcastName6" readonly="${readonly}" onblur="javascript:validateSize('starcastName6',this.value,30);" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="director1"><spring:message code="label.director1" /></form:label></td>
-					<td><form:input path="director1" readonly="${readonly}" /></td>
+					<td><form:input path="director1" readonly="${readonly}" onblur="javascript:validateSize('director1',this.value,30);" /></td>
 				
 					<td><form:label path="director2"><spring:message code="label.director2" /></form:label></td>
-					<td><form:input path="director2" readonly="${readonly}"  /></td>
+					<td><form:input path="director2" readonly="${readonly}" onblur="javascript:validateSize('director2',this.value,30);" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="director3"><spring:message code="label.director3" /></form:label></td>
-					<td><form:input path="director3" readonly="${readonly}"  /></td>
+					<td><form:input path="director3" readonly="${readonly}" onblur="javascript:validateSize('director3',this.value,30);" /></td>
 				
 					<td><form:label path="creator1"><spring:message code="label.creator1" /></form:label></td>
-					<td><form:input path="creator1" readonly="${readonly}" /></td>
+					<td><form:input path="creator1" readonly="${readonly}" onblur="javascript:validateSize('creator1',this.value,30);" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="creator2"><spring:message code="label.creator2" /></form:label></td>
-					<td><form:input path="creator2" readonly="${readonly}"  /></td>
+					<td><form:input path="creator2" readonly="${readonly}" onblur="javascript:validateSize('creator2',this.value,30);"  /></td>
 				
 					<td><form:label path="creator3"><spring:message code="label.creator3" /></form:label></td>
-					<td><form:input path="creator3" readonly="${readonly}"  /></td>
+					<td><form:input path="creator3" readonly="${readonly}" onblur="javascript:validateSize('creator3',this.value,30);" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="genre1"><spring:message code="label.genre1" /></form:label></td>
@@ -221,14 +221,14 @@
 		             </td>
 				
 					<td><form:label path="tagLine"><spring:message code="label.tagLine" /></form:label></td>
-					<td><form:textarea path="tagLine" rows="5" cols="100" readonly="${readonly}"  /></td>
+					<td><form:textarea path="tagLine" rows="5" cols="100" readonly="${readonly}" onblur="javascript:validateSize('tagLine',this.value,500);" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="movPath"><spring:message code="label.movPath" /></form:label></td>
-					<td><form:input path="movPath" readonly="${readonly}" size="50" /></td>
+					<td><form:input path="movPath" readonly="${readonly}" size="50" onblur="javascript:validateSize('movPath',this.value,50);" /></td>
 					
 					<td><form:label path="dvdLocation"><spring:message code="label.dvdLocation" /></form:label></td>
-					<td><form:input path="dvdLocation" readonly="${readonly}" /></td>
+					<td><form:input path="dvdLocation" readonly="${readonly}" onblur="javascript:validateSize('dvdLocation',this.value,20);" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="entryDt"><spring:message code="label.entryDt" /></form:label></td>
