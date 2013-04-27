@@ -33,4 +33,8 @@
     	  document.getElementById(name).style.color = "#000000";
       }
   };
+  function load(name)
+  {
+	  document.getElementById(name).value = "";
+  }
 </script>

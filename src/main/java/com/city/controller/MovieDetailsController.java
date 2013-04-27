@@ -213,19 +213,7 @@ public class MovieDetailsController {
 					.toString();
 		}
 	}
-/*protected String genreAllData() {
-		
-		StringBuffer generString = new StringBuffer();
-		for (String gener : genreData()) {
-			generString.append("\"").append(gener).append("\"").append(",");
-		}
-		if (generString.length() == 0) {
-			return generString.toString();
-		} else {
-			return generString.substring(0, generString.length() - 1)
-					.toString();
-		}
-	}*/
+
 	public Integer nextMovieId(){
 		Integer id = null;
 		List<Object> list = HibernateDaoFactory.getMovieDetailsDao().getNativeQuery("select TRAN_SEQ.nextval as IDs from dual");

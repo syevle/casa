@@ -1,6 +1,5 @@
 package com.city.model.dao.impl;
 
-import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,7 @@ import com.city.persistence.impl.GenericHibernateDaoImpl;
  * @author santosh yevle
  */
 @Service
-public class SiteDaoImpl extends GenericHibernateDaoImpl<Site, BigDecimal> implements SiteDao  {
+public class SiteDaoImpl extends GenericHibernateDaoImpl<Site, Long> implements SiteDao  {
 	
 	SiteDaoImpl() {
 		super(Site.class);

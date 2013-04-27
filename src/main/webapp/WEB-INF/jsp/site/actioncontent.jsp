@@ -2,7 +2,7 @@
 
 <div id="content">
 	<div id="column1">
-		<h3>Site 111</h3>
+		<h3>${fromName}</h3>
 		<form:form method="post" action="${action}" commandName="frmObject" name="frm" id="frm" class="formular">
 			
 			<table><tr><form:errors path="*" cssClass="error" element="div" /></tr></table>

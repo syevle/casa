@@ -6,7 +6,6 @@ package com.city.action.impl;
  * @author santosh yevle
  */
 
-import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ import com.city.services.data.impl.DataLayerImpl;
 @Service
 public class SiteActionImpl implements ISiteAction {
 	@Override
-	public void delete(BigDecimal id) {
+	public void delete(Long id) {
     	Site frmObject = DataLayerImpl.getInstance().getSite(id);
     	DataLayerImpl.getInstance().delete(frmObject);
 		DataLayerImpl.getInstance().flushSession(); // flush+evict from cache to make sure we hit the DB next 

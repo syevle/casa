@@ -1,7 +1,6 @@
 package com.city.services.data;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -59,20 +58,20 @@ public interface DataLayer {
      * Will load the object internally so consider using delete (Site obj) directly
      * @param id Identifier to delete
      */
-    void deleteSite(final BigDecimal id);
+    void deleteSite(final Long id);
 	
     /**
      * Loads the given Object.
      * @param id Identifier to load
      * @return a Site object
      */
-    Site loadSite(final BigDecimal id);
+    Site loadSite(final Long id);
     /**
      * Loads the given Object.
      * @param id Id to load
      * @return An object of type T
      */
-     Site getSite(final BigDecimal id);  
+     Site getSite(final Long id);  
     /** Returns a query handle.
      * @param query Query to use
      * @return A query instance

@@ -14,7 +14,7 @@
 			<%@ include file="serch.jsp"%>
 		<%-- 	<%@ include file="actioncontent.jsp"%> --%>
 			<h3>Movie Details</h3>
-			<a href="/casa/moviedetails/list">Refresh Site</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/add">Add New Movie</a>
+			<a href="${requestController}/list">Refresh Movie</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/add">Add New Movie</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openNewWindow();">Report</a>
 			<div id="container">
 				<div class="demo_jui">

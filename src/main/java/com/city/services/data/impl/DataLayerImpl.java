@@ -2,7 +2,6 @@ package com.city.services.data.impl;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -143,7 +142,7 @@ public class DataLayerImpl implements DataLayer {
      * Will load the object internally so consider using delete (Site obj) directly
      * @param id Identifier to delete
      */
-    public void deleteSite(final BigDecimal id)  {
+    public void deleteSite(final Long id)  {
         HibernateDaoFactory.getSiteDao().delete(loadSite(id));
     }
 	
@@ -152,7 +151,7 @@ public class DataLayerImpl implements DataLayer {
      * @param id Identifier to load
      * @return a Site object
      */
-    public Site loadSite(final BigDecimal id) {
+    public Site loadSite(final Long id) {
         return HibernateDaoFactory.getSiteDao().load(id);
     }
     /**
@@ -160,7 +159,7 @@ public class DataLayerImpl implements DataLayer {
      * @param id Id to load
      * @return An object of type T
      */
-     public Site getSite(final BigDecimal id) {
+     public Site getSite(final Long id) {
         return HibernateDaoFactory.getSiteDao().get(id);
     }  
     /** Returns a singleton instance of this class.

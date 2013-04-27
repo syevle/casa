@@ -24,4 +24,12 @@ function isUpdate() {
 		document.frm.submit();
 	}
 }
+function isAdd() {
+	var conf = "";
+	conf = confirm("Are you sure,you want to Add this Movie Details?")
+	if (conf == true) {
+		document.frm.submit();
+	}
+}
+
 </script>

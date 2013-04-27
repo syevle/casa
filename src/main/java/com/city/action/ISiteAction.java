@@ -24,5 +24,5 @@ public interface ISiteAction {
 	// The @Transactional signals spring to initialise a session and a 
 	// transaction and close them at the end of this method. 
 	@Transactional
-	void delete(BigDecimal id);
+	void delete(Long id);
 }
