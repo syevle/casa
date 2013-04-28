@@ -34,6 +34,7 @@ import com.city.model.obj.Creator;
 import com.city.model.obj.Director;
 import com.city.model.obj.MovieDetails;
 import com.city.model.obj.Starcast;
+import com.city.util.ApplicationUtil;
 import com.city.util.Constant;
 import com.city.validator.MovieDetailsValidator;
 
@@ -73,7 +74,7 @@ public class MovieDetailsController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat(Constant.DATEFORMAT);
 		dateFormat.setLenient(false);
 
 		// true passed to CustomDateEditor constructor means convert empty
@@ -325,6 +326,7 @@ public class MovieDetailsController {
 		map.put("genreList", genreData());
 		map.put("languageList", languagesData());
 		map.put("command", "add");
+		map.put("todayDate", ApplicationUtil.getTodayDate());
 		map.put("creatorList", creatorList());
 		map.put("directorList", directorList());
 		map.put("starcastList", starcastList());

@@ -12,7 +12,6 @@
 	<div id="column1">
 		<form:form id="frm" class="formular">
 			<%@ include file="serch.jsp"%>
-		<%-- 	<%@ include file="actioncontent.jsp"%> --%>
 			<h3>Movie Details</h3>
 			<a href="${requestController}/list">Refresh Movie</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/add">Add New Movie</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openNewWindow();">Report</a>

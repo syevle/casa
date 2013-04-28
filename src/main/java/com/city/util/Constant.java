@@ -15,6 +15,7 @@ public class Constant {
 	public static final String SITE = "/site";
 	public static final String SCHEMA = "/SANTOSH";
 	public static final String MOVIEDETAILS = "/moviedetails";
+	public static final String DATEFORMAT = "dd-MM-yyyy";
 	
 	
 }

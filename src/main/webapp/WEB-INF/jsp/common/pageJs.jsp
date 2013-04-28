@@ -41,4 +41,16 @@
 	  	document.getElementById(name).value = "";
 	  }
   }
+  function goBack()
+  {
+  window.history.back()
+  }
+  function todayDate(name)
+  {
+	  	var today = new Date();
+	    var dd = today.getDate();
+	    var mm = today.getMonth()+1; //January is 0!
+	    var yyyy = today.getFullYear();
+	    document.getElementById(name).value = dd+"-"+mm+"-"+yy;
+  }
 </script>
