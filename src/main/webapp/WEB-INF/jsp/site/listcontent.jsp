@@ -22,7 +22,7 @@
 						<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 							<thead>
 								<tr>
-								<th>Site Id</th>
+									<th>Site Id</th>
 									<th>Site Name</th>
 									<th>Site Address</th>
 									<th>Action</th>

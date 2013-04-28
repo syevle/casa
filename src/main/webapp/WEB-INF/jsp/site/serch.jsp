@@ -35,11 +35,11 @@
 	  var movieidflag = true;
 	  var movieNameflag = true;
 	  
-		  if (movieid==null || movieid==trim(movieid).length)
+		  if (movieid==null || 0 ==trim(movieid).length)
 		    {
 			  movieidflag = false;
 		    }
-		  if (movieName==null || movieName==trim(movieName).length)
+		  if (movieName==null || 0 ==trim(movieName).length)
 		  {
 			  movieNameflag = false;
 		  }

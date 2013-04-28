@@ -55,20 +55,20 @@
 	  var starcastNameflag = true;
 	  var genreflag = true;
 	  
-		  if (movieid==null || movieid==trim(movieid).length)
+		  if (movieid==null || 0 ==trim(movieid).length)
 		    {
 			  movieidflag = false;
 		    }
-		  if (movieName==null || movieName==trim(movieName).length)
+		  if (movieName==null || 0 ==trim(movieName).length)
 		  {
 			  movieNameflag = false;
 		  }
 		  
-		  if (starcastName==null || starcastName==trim(starcastName).length)
+		  if (starcastName==null || 0 ==trim(starcastName).length)
 		    {
 			  starcastNameflag = false;
 		    }
-		  if (genre==null || genre==trim(genre).length)
+		  if (genre==null || 0 ==trim(genre).length)
 		  {
 			  genreflag = false;
 		  }

@@ -35,6 +35,10 @@
   };
   function load(name)
   {
-	  document.getElementById(name).value = "";
+	  var  actualValue = document.getElementById(name).value;
+	  var txtValue = parseInt(actualValue);
+	  if (txtValue == 0) {
+	  	document.getElementById(name).value = "";
+	  }
   }
 </script>
