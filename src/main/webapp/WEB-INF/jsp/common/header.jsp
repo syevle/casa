@@ -1,4 +1,4 @@
 
 <div id="header">
-	<h1>Casablanca DVD Club</h1>
+	<center><img src="<%=request.getContextPath()%>/media/images/Logo.gif" alt="Logo" /></center>
 </div>

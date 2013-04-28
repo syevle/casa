@@ -1,5 +1,5 @@
 <head>
-<title>Spring 3 MVC</title>
+<title>Casablanca DVD Club</title>
 <%@ include file="../common/pageCss.jsp" %>
 <%@ include file="../common/pageJs.jsp" %>
 </head>

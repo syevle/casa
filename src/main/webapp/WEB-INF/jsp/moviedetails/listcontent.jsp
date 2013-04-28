@@ -14,7 +14,7 @@
 			<%@ include file="serch.jsp"%>
 			<h3>Movie Details</h3>
 			<a href="${requestController}/list"><img src="<%=request.getContextPath()%>/media/images/list.png" alt="Refresh" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/add"><img src="<%=request.getContextPath()%>/media/images/create.png" alt="Add" /></a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openNewWindow();">Report</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openNewWindow();"><img src="<%=request.getContextPath()%>/media/images/ico_xls.gif" alt="Report" /></a>
 			<div id="container">
 				<div class="demo_jui">
 					<c:if test="${!empty list}">
