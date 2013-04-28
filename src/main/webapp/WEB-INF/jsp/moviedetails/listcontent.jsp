@@ -13,7 +13,7 @@
 		<form:form id="frm" class="formular">
 			<%@ include file="serch.jsp"%>
 			<h3>Movie Details</h3>
-			<a href="${requestController}/list">Refresh Movie</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/add">Add New Movie</a>
+			<a href="${requestController}/list"><img src="<%=request.getContextPath()%>/media/images/list.png" alt="Refresh" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/add"><img src="<%=request.getContextPath()%>/media/images/create.png" alt="Add" /></a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openNewWindow();">Report</a>
 			<div id="container">
 				<div class="demo_jui">
@@ -24,7 +24,8 @@
 									<th>Movie Code</th>
 									<th>Movie Name</th>
 									<th>Available Status</th>
-									<th>Action</th>
+									<th></th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -33,8 +34,8 @@
 										<td><a href="${requestController}/find/get/${movieDetails.id}">${movieDetails.id}</a></td>
 										<td>${movieDetails.movName}</td>
 										<td>${movieDetails.avalStatus}</td>
-										<td width="200"><a href="${requestController}/find/delete/${movieDetails.id}">DELETE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a href="${requestController}/find/update/${movieDetails.id}">UPDATE</a></td>
+										<td><a href="${requestController}/find/delete/${movieDetails.id}"><img src="<%=request.getContextPath()%>/media/images/delete.png" alt="Delete" /></a></td>
+										<td><a href="${requestController}/find/update/${movieDetails.id}"><img src="<%=request.getContextPath()%>/media/images/update.png" alt="Update" /></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
