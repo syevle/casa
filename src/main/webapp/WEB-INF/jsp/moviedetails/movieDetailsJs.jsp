@@ -34,6 +34,11 @@
 	}
 	function generateId(data) {
 		var id = document.getElementById("id").value
-		document.getElementById("id").value = data.value + id.substring(3);
+		var lan = data.value
+		if(lan == "Hindi"){
+			document.getElementById("id").value = id.substring(0,1)+lan.substring(0,1) + id.substring(1);
+		}else if (id.substring(0,2) == "DH"){
+			document.getElementById("id").value = id.substring(0,1)+id.substring(2);
+		}
 	}
 </script>

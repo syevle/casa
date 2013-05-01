@@ -4,11 +4,11 @@
 <html>
 <%@ include file="../common/pageHead.jsp"%>
 <%@ include file="movieDetailsJs.jsp"%>
-<body>
+<body onload="setFoucs('movName');">
 	<div id="outer">
 		<div id="outer2">
-			<%@ include file="../common/header.jsp"%>
-			<%@ include file="../common/menu.jsp"%>
+			<%-- <%@ include file="../common/header.jsp"%>
+			<%@ include file="../common/menu.jsp"%> --%>
 			<%@ include file="actioncontent.jsp"%>
 		</div>
 		<%@ include file="../common/footer.jsp"%>

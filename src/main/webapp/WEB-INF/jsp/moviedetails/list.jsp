@@ -5,7 +5,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <head>
 <%@ include file="../common/pageHead.jsp"%>
-<body>
+<body onload="setFoucs('id');">
 	<div id="outer">
 		<div id="outer2">
 			<%@ include file="../common/header.jsp"%>

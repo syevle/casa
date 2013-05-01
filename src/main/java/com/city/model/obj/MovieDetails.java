@@ -404,7 +404,7 @@ public class MovieDetails implements Cloneable, Serializable {
 	}
 
 	public void setMovPath(String movPath) {
-		this.movPath = movPath;
+		this.movPath = ApplicationUtil.getCapitalizeFirstLetter(movPath);
 	}
 
 	@Temporal(TemporalType.DATE)

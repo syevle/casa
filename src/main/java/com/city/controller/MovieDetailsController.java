@@ -93,6 +93,7 @@ public class MovieDetailsController {
 			map.put("countryList", countryData());
 			map.put("genreList", genreData());
 			map.put("languageList", languagesData());
+			map.put("dvdLocationList", dvdLocationList());
 			map.put("command", "add");
 			map.put("creatorList", creatorList());
 			map.put("directorList", directorList());
@@ -101,7 +102,7 @@ public class MovieDetailsController {
 			map.put("readonly", "false");
 			return PATH + Constant.ACTION;
 		}
-
+		frmObject.setMovPath(frmObject.getMovName()+".jpg")	;	
 		movieDetailsAction.saveOrUpdate(frmObject);
 
 		return Constant.REDIRECT + PATH + Constant.LIST;
@@ -120,7 +121,7 @@ public class MovieDetailsController {
 			map.put("readonly", "false");
 			return PATH + Constant.ACTION;
 		}
-
+		frmObject.setMovPath(frmObject.getMovName()+".jpg")	;
 		movieDetailsAction.save(frmObject);
 
 		return Constant.REDIRECT + PATH + Constant.LIST;
@@ -315,7 +316,7 @@ public class MovieDetailsController {
 	@RequestMapping(value = Constant.ADD, method = RequestMethod.GET)
 	public String add(Map<String, Object> map) {
 		frmObject = getFromObject();
-		frmObject.setId("DVD"+nextMovieId().toString());
+		frmObject.setId("D"+nextMovieId().toString());
 		frmObject.setAvalStatus('Y');
 		frmObject.setUplodReq('Y');
 		map.put("frmObject", frmObject);
@@ -325,6 +326,7 @@ public class MovieDetailsController {
 		map.put("countryList", countryData());
 		map.put("genreList", genreData());
 		map.put("languageList", languagesData());
+		map.put("dvdLocationList", dvdLocationList());
 		map.put("command", "add");
 		map.put("todayDate", ApplicationUtil.getTodayDate());
 		map.put("creatorList", creatorList());
@@ -352,6 +354,7 @@ public class MovieDetailsController {
 				map.put("countryList", countryData());
 				map.put("genreList", genreData());
 				map.put("languageList", languagesData());
+				map.put("dvdLocationList", dvdLocationList());
 				map.put("creatorList", creatorList());
 				map.put("directorList", directorList());
 				map.put("starcastList", starcastList());
@@ -363,11 +366,13 @@ public class MovieDetailsController {
 				map.put("countryList", countryData());
 				map.put("genreList", genreData());
 				map.put("languageList", languagesData());
+				map.put("dvdLocationList", dvdLocationList());
 			} else {
 				map.put("fromName", "Movie Details");
 				map.put("countryList", countryData());
 				map.put("genreList", genreData());
 				map.put("languageList", languagesData());
+				map.put("dvdLocationList", dvdLocationList());
 				map.put("command", "get");
 				map.put("readonly", "true");
 				map.put("disabled", "true");
@@ -380,7 +385,7 @@ public class MovieDetailsController {
 	}
 	protected List<String> countryData() {
 		List<String> list = new LinkedList<String>();
-		list.add("SELECT");
+		list.add("");
 		Set<String> countryList = new TreeSet<String>();
 		countryList.add("Afghanistan");
 		countryList.add("Italy");
@@ -435,7 +440,7 @@ public class MovieDetailsController {
 	
 	protected List<String> genreData() {
 		List<String> list = new LinkedList<String>();
-		list.add("SELECT");
+		list.add("");
 		Set<String> genreList = new TreeSet<String>();
 		genreList.add("Action");
 		genreList.add("Adventure");
@@ -469,7 +474,7 @@ public class MovieDetailsController {
 	}
 	protected List<String> languagesData() {
 		List<String> list = new LinkedList<String>();
-		list.add("SELECT");
+		list.add("");
 		Set<String> languages = new TreeSet<String>();
 		languages.add("Afrikaans");
 		languages.add("Arabic");
@@ -511,7 +516,19 @@ public class MovieDetailsController {
 		list.addAll(languages);
 		return list;
 	}
-	
+	protected List<String> dvdLocationList() {
+		List<String> list = new LinkedList<String>();
+		Set<String> languages = new TreeSet<String>();
+		languages.add("C");
+		languages.add("D");
+		languages.add("E");
+		languages.add("F");
+		languages.add("G");
+		
+		//languages.add("-----------------------------------------------");
+		list.addAll(languages);
+		return list;
+	}
 	/*protected List<String> movieCodeList() {
 		List<String> list = new LinkedList<String>();
 		list.add("SELECT");

@@ -53,4 +53,8 @@
 	    var yyyy = today.getFullYear();
 	    document.getElementById(name).value = dd+"-"+mm+"-"+yy;
   }
+  function setFoucs(name)
+  {
+	  document.getElementById(name).focus();
+  }
 </script>
