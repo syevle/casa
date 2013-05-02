@@ -233,7 +233,7 @@
 					<td><form:label path="dvdLocation"><spring:message code="label.dvdLocation" /></form:label></td>
 					<td><%-- <form:input path="dvdLocation" readonly="${readonly}" onblur="javascript:validateSize('dvdLocation',this.value,20);" tabindex="24"/> --%>
 					<%-- <form:select path="dvdLocation" items="${dvdLocationList}" multiple="true" />  --%>
-					<form:input path="dvdLocation" readonly="${readonly}" onblur="javascript:validateSize('dvdLocation',this.value,20);" tabindex="24"/>
+					<form:input path="dvdLocation" readonly="${readonly}" size="20" onblur="javascript:validateSize('dvdLocation',this.value,20);" tabindex="24"/>
 					
 					</td>
 				</tr>
