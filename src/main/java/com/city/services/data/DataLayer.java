@@ -11,6 +11,8 @@ import org.hibernate.Session;
 
 import com.city.model.obj.Creator;
 import com.city.model.obj.Director;
+import com.city.model.obj.DvdLocation;
+import com.city.model.obj.Genre;
 import com.city.model.obj.MovieDetails;
 import com.city.model.obj.Site;
 import com.city.model.obj.Starcast;
@@ -228,5 +230,43 @@ public interface DataLayer {
      * @return An object of type T
      */
     Starcast getStarcast(final String id); 
+    
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (Site obj) directly
+     * @param id Identifier to delete
+     */
+    void deleteGenre(final String id);
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a Site object
+     */
+    Genre loadGenre(final String id);
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+    Genre getGenre(final String id);
+    
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (Site obj) directly
+     * @param id Identifier to delete
+     */
+    void deleteDvdLocation(final String id);
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a Site object
+     */
+    DvdLocation loadDvdLocation(final String id);
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+    DvdLocation getDvdLocation(final String id);  
 }
 

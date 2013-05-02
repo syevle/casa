@@ -32,6 +32,8 @@ import com.city.action.IMovieDetailsAction;
 import com.city.factories.HibernateDaoFactory;
 import com.city.model.obj.Creator;
 import com.city.model.obj.Director;
+import com.city.model.obj.DvdLocation;
+import com.city.model.obj.Genre;
 import com.city.model.obj.MovieDetails;
 import com.city.model.obj.Starcast;
 import com.city.util.ApplicationUtil;
@@ -91,7 +93,8 @@ public class MovieDetailsController {
 		if (result.hasErrors()) {
 			map.put("requestMapping", REQUESTMAPPING);
 			map.put("countryList", countryData());
-			map.put("genreList", genreData());
+			map.put("genreList", genreList());
+			map.put("dvdLocationList", dvdLocationList());
 			map.put("languageList", languagesData());
 			map.put("dvdLocationList", dvdLocationList());
 			map.put("command", "add");
@@ -126,7 +129,36 @@ public class MovieDetailsController {
 
 		return Constant.REDIRECT + PATH + Constant.LIST;
 	}
-
+	private String genreList() {
+		List<Genre> genreList = HibernateDaoFactory.getGenreDao()
+				.findAll();
+		StringBuffer genreString = new StringBuffer();
+		for (Genre genre : genreList) {
+			genreString.append("\"").append(genre.getGenreName())
+					.append("\"").append(",");
+		}
+		if (genreString.length() == 0) {
+			return genreString.toString();
+		} else {
+			return genreString.substring(0, genreString.length() - 1)
+					.toString();
+		}
+	}
+	private String dvdLocationList() {
+		List<DvdLocation> dvdLocationList = HibernateDaoFactory.getDvdLocationDao()
+				.findAll();
+		StringBuffer dvdLocationString = new StringBuffer();
+		for (DvdLocation dvdLocation : dvdLocationList) {
+			dvdLocationString.append("\"").append(dvdLocation.getDvdLocation())
+					.append("\"").append(",");
+		}
+		if (dvdLocationString.length() == 0) {
+			return dvdLocationString.toString();
+		} else {
+			return dvdLocationString.substring(0, dvdLocationString.length() - 1)
+					.toString();
+		}
+	}
 	private String creatorList() {
 		List<Creator> creatorList = HibernateDaoFactory.getCreatorDao()
 				.findAll();
@@ -202,7 +234,7 @@ public class MovieDetailsController {
 					.toString();
 		}
 	}
-	private String genreAllData() {
+	/*private String genreAllData() {
 		StringBuffer generString = new StringBuffer();
 		for (String gener : genreData()) {
 			generString.append("\"").append(gener.toString())
@@ -214,7 +246,7 @@ public class MovieDetailsController {
 			return generString.substring(0, generString.length() - 1)
 					.toString();
 		}
-	}
+	}*/
 
 	public Integer nextMovieId(){
 		Integer id = null;
@@ -284,7 +316,8 @@ public class MovieDetailsController {
 		map.put("movieCodeList", movieCodeList());
 		map.put("movieNameList", movieNameList());
 		map.put("starcastList", starcastList());
-		map.put("genreAllList", genreAllData());
+		map.put("genreList", genreList());
+		map.put("dvdLocationList", dvdLocationList());
 		map.put("list", movieDetailsList);
 		map.put("frmObject", frmObject);
 		map.put("readonly", readOnly);
@@ -324,7 +357,8 @@ public class MovieDetailsController {
 		map.put("action", Constant.ROOTPATH + PATH + Constant.ADD);
 		map.put("fromName", "To Add New Movie");
 		map.put("countryList", countryData());
-		map.put("genreList", genreData());
+		map.put("genreList", genreList());
+		map.put("dvdLocationList", dvdLocationList());
 		map.put("languageList", languagesData());
 		map.put("dvdLocationList", dvdLocationList());
 		map.put("command", "add");
@@ -352,7 +386,8 @@ public class MovieDetailsController {
 				map.put("readonly", "false");
 				map.put("fromName", "To Update Movie");
 				map.put("countryList", countryData());
-				map.put("genreList", genreData());
+				map.put("genreList", genreList());
+				map.put("dvdLocationList", dvdLocationList());
 				map.put("languageList", languagesData());
 				map.put("dvdLocationList", dvdLocationList());
 				map.put("creatorList", creatorList());
@@ -364,13 +399,15 @@ public class MovieDetailsController {
 				map.put("command", "delete");
 				map.put("readonly", "true");
 				map.put("countryList", countryData());
-				map.put("genreList", genreData());
+				map.put("genreList", genreList());
+				map.put("dvdLocationList", dvdLocationList());
 				map.put("languageList", languagesData());
 				map.put("dvdLocationList", dvdLocationList());
 			} else {
 				map.put("fromName", "Movie Details");
 				map.put("countryList", countryData());
-				map.put("genreList", genreData());
+				map.put("genreList", genreList());
+				map.put("dvdLocationList", dvdLocationList());
 				map.put("languageList", languagesData());
 				map.put("dvdLocationList", dvdLocationList());
 				map.put("command", "get");
@@ -438,7 +475,7 @@ public class MovieDetailsController {
 		return list;
 	}
 	
-	protected List<String> genreData() {
+	/*protected List<String> genreData() {
 		List<String> list = new LinkedList<String>();
 		list.add("");
 		Set<String> genreList = new TreeSet<String>();
@@ -471,7 +508,7 @@ public class MovieDetailsController {
 		//genreList.add("-----------------------------------------------");
 		list.addAll(genreList);
 		return list;
-	}
+	}*/
 	protected List<String> languagesData() {
 		List<String> list = new LinkedList<String>();
 		list.add("");
@@ -516,7 +553,7 @@ public class MovieDetailsController {
 		list.addAll(languages);
 		return list;
 	}
-	protected List<String> dvdLocationList() {
+	/*protected List<String> dvdLocationList() {
 		List<String> list = new LinkedList<String>();
 		Set<String> languages = new TreeSet<String>();
 		languages.add("C");
@@ -528,7 +565,7 @@ public class MovieDetailsController {
 		//languages.add("-----------------------------------------------");
 		list.addAll(languages);
 		return list;
-	}
+	}*/
 	/*protected List<String> movieCodeList() {
 		List<String> list = new LinkedList<String>();
 		list.add("SELECT");

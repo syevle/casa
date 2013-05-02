@@ -20,6 +20,8 @@ import org.springframework.stereotype.Component;
 import com.city.factories.HibernateDaoFactory;
 import com.city.model.obj.Creator;
 import com.city.model.obj.Director;
+import com.city.model.obj.DvdLocation;
+import com.city.model.obj.Genre;
 import com.city.model.obj.MovieDetails;
 import com.city.model.obj.Site;
 import com.city.model.obj.Starcast;
@@ -81,6 +83,8 @@ public class DataLayerImpl implements DataLayer {
 	 	   		daoMap.put(Creator.class, HibernateDaoFactory.getCreatorDao());
 	 	   		daoMap.put(Director.class, HibernateDaoFactory.getDirectorDao());
 	 	   		daoMap.put(Starcast.class, HibernateDaoFactory.getStarcastDao());
+	 	   		daoMap.put(Genre.class, HibernateDaoFactory.getGenreDao());
+	 	   		daoMap.put(DvdLocation.class, HibernateDaoFactory.getDvdLocationDao());
     		}
 		 }
 		if (persistentObject instanceof HibernateProxy) {
@@ -337,6 +341,36 @@ public class DataLayerImpl implements DataLayer {
 	@Override
 	public Starcast getStarcast(String id) {
 		return HibernateDaoFactory.getStarcastDao().get(id);
+	}
+
+	@Override
+	public void deleteGenre(String id) {
+		HibernateDaoFactory.getGenreDao().delete(loadGenre(id));
+	}
+
+	@Override
+	public Genre loadGenre(String id) {
+		return HibernateDaoFactory.getGenreDao().load(id);
+	}
+
+	@Override
+	public Genre getGenre(String id) {
+		return HibernateDaoFactory.getGenreDao().get(id);
+	}
+
+	@Override
+	public void deleteDvdLocation(String id) {
+		HibernateDaoFactory.getDvdLocationDao().delete(loadDvdLocation(id));
+	}
+
+	@Override
+	public DvdLocation loadDvdLocation(String id) {
+		return HibernateDaoFactory.getDvdLocationDao().load(id);
+	}
+
+	@Override
+	public DvdLocation getDvdLocation(String id) {
+		return HibernateDaoFactory.getDvdLocationDao().get(id);
 	}
 
 }

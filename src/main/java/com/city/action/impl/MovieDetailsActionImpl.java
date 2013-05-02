@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.city.action.IMovieDetailsAction;
 import com.city.model.obj.Creator;
 import com.city.model.obj.Director;
+import com.city.model.obj.DvdLocation;
+import com.city.model.obj.Genre;
 import com.city.model.obj.MovieDetails;
 import com.city.model.obj.Starcast;
 import com.city.services.data.impl.DataLayerImpl;
@@ -27,6 +29,8 @@ public class MovieDetailsActionImpl implements IMovieDetailsAction {
 	@Override
 	public MovieDetails saveOrUpdate(MovieDetails frmObject) {
 		saveCreator(frmObject);
+		saveGenre(frmObject);
+		saveDvdLocation(frmObject);
 		saveDirector(frmObject);
 		saveStarcast(frmObject);
     	DataLayerImpl.getInstance().saveOrUpdate(frmObject);
@@ -38,6 +42,8 @@ public class MovieDetailsActionImpl implements IMovieDetailsAction {
 	@Override
 	public MovieDetails save(MovieDetails frmObject) {
 		saveCreator(frmObject);
+		saveGenre(frmObject);
+		saveDvdLocation(frmObject);
 		saveDirector(frmObject);
 		saveStarcast(frmObject);
     	DataLayerImpl.getInstance().save(frmObject);
@@ -164,5 +170,59 @@ public class MovieDetailsActionImpl implements IMovieDetailsAction {
 				DataLayerImpl.getInstance().save(creator3);
 			}
 		}
+	}
+	/**
+	 * 
+	 * @param frmObject
+	 */
+	private void saveGenre(MovieDetails frmObject) {
+		if(frmObject.getCreator1() != null){
+			Genre genre1 = (Genre) DataLayerImpl.getInstance().get(Genre.class,frmObject.getGenre1());
+			if(genre1 == null && frmObject.getGenre1() !=null && frmObject.getGenre1().trim().length()>0){
+				genre1 = new Genre();
+				genre1.setGenreName(frmObject.getGenre1().trim());
+				DataLayerImpl.getInstance().save(genre1);
+			}
+		}
+		
+		if(frmObject.getGenre2() != null && frmObject.getGenre2() !=null && frmObject.getGenre2().trim().length()>0){
+			Genre genre2 = (Genre) DataLayerImpl.getInstance().get(Genre.class,frmObject.getGenre2());
+			if(genre2 == null){
+				genre2 = new Genre();
+				genre2.setGenreName(frmObject.getGenre2().trim());
+				DataLayerImpl.getInstance().save(genre2);
+			}
+		}
+		if(frmObject.getGenre3() != null && frmObject.getGenre3() !=null && frmObject.getGenre3().trim().length()>0){
+			Genre genre3 = (Genre) DataLayerImpl.getInstance().get(Genre.class,frmObject.getGenre3());
+			if(genre3 == null){
+				genre3 = new Genre();
+				genre3.setGenreName(frmObject.getGenre3().trim());
+				DataLayerImpl.getInstance().save(genre3);
+			}
+		}
+		if(frmObject.getGenreExtra() != null && frmObject.getGenreExtra() !=null && frmObject.getGenreExtra().trim().length()>0){
+			Genre genreExtra = (Genre) DataLayerImpl.getInstance().get(Genre.class,frmObject.getGenreExtra());
+			if(genreExtra == null){
+				genreExtra = new Genre();
+				genreExtra.setGenreName(frmObject.getGenreExtra().trim());
+				DataLayerImpl.getInstance().save(genreExtra);
+			}
+		}
+	}
+	/**
+	 * 
+	 * @param frmObject
+	 */
+	private void saveDvdLocation(MovieDetails frmObject) {
+		if(frmObject.getDvdLocation() != null){
+			DvdLocation dvdLocation = (DvdLocation) DataLayerImpl.getInstance().get(DvdLocation.class,frmObject.getDvdLocation());
+			if(dvdLocation == null && frmObject.getDvdLocation() !=null && frmObject.getDvdLocation().trim().length()>0){
+				dvdLocation = new DvdLocation();
+				dvdLocation.setDvdLocation(frmObject.getDvdLocation().trim());
+				DataLayerImpl.getInstance().save(dvdLocation);
+			}
+		}
+		
 	}
 }

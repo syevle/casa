@@ -27,7 +27,7 @@
   
   $(function() {
 	    var availableTags = [
-	      ${genreAllList}
+	      ${genreList}
 	    ];
 	    $( "#genre1" ).autocomplete({
 	      source: availableTags

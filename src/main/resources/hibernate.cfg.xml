@@ -11,6 +11,8 @@
           <mapping class="com.city.model.obj.Creator" />
           <mapping class="com.city.model.obj.Director" />
           <mapping class="com.city.model.obj.Starcast" />
+           <mapping class="com.city.model.obj.Genre" />
+          <mapping class="com.city.model.obj.DvdLocation" />
           
     </session-factory>
 </hibernate-configuration>

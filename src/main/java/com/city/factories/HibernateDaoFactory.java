@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.city.model.dao.CreatorDao;
 import com.city.model.dao.DirectorDao;
+import com.city.model.dao.DvdLocationDao;
+import com.city.model.dao.GenreDao;
 import com.city.model.dao.MovieDetailsDao;
 import com.city.model.dao.SiteDao;
 import com.city.model.dao.StarcastDao;
@@ -118,4 +120,20 @@ public class HibernateDaoFactory implements ApplicationContextAware, BeanNameAwa
 	public static StarcastDao  getStarcastDao() {
 		return (StarcastDao) getBean("starcastDaoImpl"); 
 	}	
+	/**
+	 * Returns a SiteDao instance.
+	 * 
+	 * @return a SiteDao instance
+	 */
+	public static GenreDao  getGenreDao() {
+		return (GenreDao) getBean("genreDaoImpl"); 
+	}
+	/**
+	 * Returns a SiteDao instance.
+	 * 
+	 * @return a SiteDao instance
+	 */
+	public static DvdLocationDao  getDvdLocationDao() {
+		return (DvdLocationDao) getBean("dvdLocationDaoImpl"); 
+	}
 }

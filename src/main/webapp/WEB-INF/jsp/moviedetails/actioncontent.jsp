@@ -63,6 +63,33 @@
 	  });
   
   $(function() {
+	    var availableTags = [
+	      ${genreList}
+	    ];
+	    $( "#genre1" ).autocomplete({
+	      source: availableTags
+	    });
+	    $( "#genre2" ).autocomplete({
+		      source: availableTags
+		});
+	    $( "#genre3" ).autocomplete({
+		      source: availableTags
+		 });
+	    $( "#genreExtra" ).autocomplete({
+		      source: availableTags
+		 });
+	  });
+  
+  $(function() {
+	    var availableTags = [
+	      ${dvdLocationList}
+	    ];
+	    $( "#dvdLocation" ).autocomplete({
+	      source: availableTags
+	    });
+	  });
+  
+  $(function() {
 	    $( "#relDate" ).datepicker({ dateFormat: "dd-mm-yy" }).val()
 	  });
   $(function() {
@@ -166,47 +193,23 @@
 				<tr>
 					<td><form:label path="genre1"><spring:message code="label.genre1" /></form:label></td>
 					<td>					
-						<%-- <form:select path="genre1" items="${genreList}" disabled="${disabled}" /> --%>
-						<c:if test="${readonly == true}">
-		                	<form:select path="genre1" items="${genreList}" disabled="${disabled}" />
-		               </c:if>
-		               <c:if test="${readonly == false}">
-		                	<form:select path="genre1" items="${genreList}" tabindex="17"/>
-		               </c:if>
+						<form:input path="genre1" readonly="${readonly}" onblur="javascript:validateSize('genre1',this.value,20);" tabindex="17"/>
 	                </td>
 				
 					<td><form:label path="genre2"><spring:message code="label.genre2" /></form:label></td>
 					<td>					
-						<%-- <form:select path="genre2" items="${genreList}" disabled="${disabled}" /> --%>
-						<c:if test="${readonly == true}">
-		                	<form:select path="genre2" items="${genreList}" disabled="${disabled}" />
-		               </c:if>
-		               <c:if test="${readonly == false}">
-		                	<form:select path="genre2" items="${genreList}" tabindex="18"/>
-		               </c:if>
+					<form:input path="genre2" readonly="${readonly}" onblur="javascript:validateSize('genre2',this.value,20);" tabindex="18"/>
 	                </td>
 				</tr>
 				<tr>
 					<td><form:label path="genre3"><spring:message code="label.genre3" /></form:label></td>
 					<td>					
-						<%-- <form:select path="genre3" items="${genreList}" disabled="${disabled}"/> --%>
-						<c:if test="${readonly == true}">
-		                	<form:select path="genre3" items="${genreList}" disabled="${disabled}" />
-		               </c:if>
-		               <c:if test="${readonly == false}">
-		                	<form:select path="genre3" items="${genreList}" tabindex="19"/>
-		               </c:if>
+					<form:input path="genre3" readonly="${readonly}" onblur="javascript:validateSize('genre3',this.value,20);" tabindex="19"/>
 	                </td>
 				
 					<td><form:label path="genreExtra"><spring:message code="label.genreExtra" /></form:label></td>
 					<td>					
-						<%-- <form:select path="genreExtra" items="${genreList}" disabled="${disabled}" /> --%>
-						<c:if test="${readonly == true}">
-		                	<form:select path="genreExtra" items="${genreList}" disabled="${disabled}" />
-		               </c:if>
-		               <c:if test="${readonly == false}">
-		                	<form:select path="genreExtra" items="${genreList}" tabindex="20"/>
-		               </c:if>
+						<form:input path="genreExtra" readonly="${readonly}" onblur="javascript:validateSize('genreExtra',this.value,20);" tabindex="20"/>
 	                </td>
 				</tr>
 				<tr>
@@ -229,7 +232,8 @@
 					
 					<td><form:label path="dvdLocation"><spring:message code="label.dvdLocation" /></form:label></td>
 					<td><%-- <form:input path="dvdLocation" readonly="${readonly}" onblur="javascript:validateSize('dvdLocation',this.value,20);" tabindex="24"/> --%>
-					<form:select path="dvdLocation" items="${dvdLocationList}" multiple="true" /> 
+					<%-- <form:select path="dvdLocation" items="${dvdLocationList}" multiple="true" />  --%>
+					<form:input path="dvdLocation" readonly="${readonly}" onblur="javascript:validateSize('dvdLocation',this.value,20);" tabindex="24"/>
 					
 					</td>
 				</tr>
