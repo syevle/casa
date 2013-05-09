@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
 /**
  * Generic DAO class.
  * @author santosh yevle
@@ -168,6 +169,6 @@ public interface GenericDAO<T, PK extends Serializable> {
      * @param criterion to filter.
      * @return list of objects
      */
-    List<T> findByCriteria(List<Criterion> criterion);
+    List<T> findByCriteria(List<Criterion> criterion,Integer limit,Order... orders);
    // public Session getSession();
 }

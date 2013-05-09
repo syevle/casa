@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -261,14 +262,21 @@ public abstract class GenericHibernateDaoImpl<T, PK extends Serializable> implem
      * @return A list of matching objects
      */
     @SuppressWarnings("unchecked")
-    public List<T> findByCriteria(List<Criterion> criterion) {
+    public List<T> findByCriteria(List<Criterion> criterion,Integer limit,Order... orders) {
         Criteria crit =  getSession().createCriteria(getPersistentClass());
         
         for (Criterion c : criterion) {
             crit.add(c);
         }
+        for (Order o : orders) {
+            crit.addOrder(o);
+        }
+        if(limit != null){
+        	crit.setMaxResults(limit);
+        }
         return crit.list();
     }
+
 
     
     /** FindAll.

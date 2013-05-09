@@ -156,7 +156,7 @@ public class SiteController {
 			readOnly = false;
 			siteList = HibernateDaoFactory.getSiteDao().findByCriteria();
 		}else{
-			siteList = HibernateDaoFactory.getSiteDao().findByCriteria(criterionList);
+			siteList = HibernateDaoFactory.getSiteDao().findByCriteria(criterionList,10);
 		}
 		map.put("siteIdList", siteIdList());
 		map.put("nameList", nameList());

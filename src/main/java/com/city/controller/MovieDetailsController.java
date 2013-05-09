@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -308,9 +309,11 @@ public class MovieDetailsController {
 		}
 		if(criterionList.size() == 0){
 			readOnly = false;
-			movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findByCriteria();
+			Criterion name = Restrictions.like("movName", "AA%").ignoreCase();
+			criterionList.add(name);
+			movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findByCriteria(criterionList,20,Order.asc("movName"));
 		}else{
-			movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findByCriteria(criterionList);
+			movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findByCriteria(criterionList,null,Order.asc("movName"));
 		}
 		//map.put("id", movieCode);
 		map.put("movieCodeList", movieCodeList());
