@@ -5,6 +5,7 @@ package com.city.util;
 public class Constant {
 	public static final String ROOTPATH = "/casa";
 	public static final String LIST = "/list";
+	public static final String SERCH = "/serch";
 	public static final String REPORT = "/report";
 	public static final String ADD = "/add";
 	public static final String UPDATE = "/update";

@@ -3,7 +3,7 @@
 	<ul>
 		<li><a href="">Login</a>
 		</li>
-		<li><a href="/casa/moviedetails/list">Movie Details</a>
+		<li><a href="/casa/moviedetails/serch">Movie Details</a>
 		</li>
 		<li><a href="">Services</a>
 		</li>

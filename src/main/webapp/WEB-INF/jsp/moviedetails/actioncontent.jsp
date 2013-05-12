@@ -1,94 +1,12 @@
 
-<%-- below code used for autocompleter --%>
-<style type="text/css" title="currentStyle">
-@import "<%=request.getContextPath()%>/media/css/jquery-ui.css";
-</style>
-
-<%-- <script type="text/javascript" language="javascript" src="<%=request.getContextPath()%>/media/js/jquery-1.9.1.js"></script> --%>
-<script type="text/javascript" language="javascript" src="<%=request.getContextPath()%>/media/js/jquery-ui.js"></script>
- 
-  <script>
-  $(function() {
-    var availableTags = [
-      ${creatorList}
-    ];
-    $( "#creator1" ).autocomplete({
-      source: availableTags
-    });
-    $( "#creator2" ).autocomplete({
-        source: availableTags
-      });
-    $( "#creator3" ).autocomplete({
-        source: availableTags
-      });
-  });
-  
-  $(function() {
-	    var availableTags = [
-	      ${directorList}
-	    ];
-	    $( "#director1" ).autocomplete({
-	      source: availableTags
-	    });
-	    $( "#director2" ).autocomplete({
-	        source: availableTags
-	      });
-	    $( "#director3" ).autocomplete({
-	        source: availableTags
-	      });
-	  });
-  
-  $(function() {
-	    var availableTags = [
-	      ${starcastList}
-	    ];
-	    $( "#starcastName1" ).autocomplete({
-	      source: availableTags
-	    });
-	    $( "#starcastName2" ).autocomplete({
-	        source: availableTags
-	      });
-	    $( "#starcastName3" ).autocomplete({
-	        source: availableTags
-	      });
-	    $( "#starcastName4" ).autocomplete({
-		      source: availableTags
-		});
-		$( "#starcastName5" ).autocomplete({
-		     source: availableTags
-		});
-		$( "#starcastName6" ).autocomplete({
-		    source: availableTags
-		});	    
-	  });
-  
-  $(function() {
-	    var availableTags = [
-	      ${genreList}
-	    ];
-	    $( "#genre1" ).autocomplete({
-	      source: availableTags
-	    });
-	    $( "#genre2" ).autocomplete({
-		      source: availableTags
-		});
-	    $( "#genre3" ).autocomplete({
-		      source: availableTags
-		 });
-	    $( "#genreExtra" ).autocomplete({
-		      source: availableTags
-		 });
-	  });
-  
-  $(function() {
-	    var availableTags = [
-	      ${dvdLocationList}
-	    ];
-	    $( "#dvdLocation" ).autocomplete({
-	      source: availableTags
-	    });
-	  });
-  
+ <script>	
+   
+	function fillTextBox(name, data) {
+		//document.getElementById(name).value = data.value;
+	   var e = data;
+	   var str = e.options[e.selectedIndex].text;
+	   document.getElementById(name).value = str;
+	}
   $(function() {
 	    $( "#relDate" ).datepicker({ dateFormat: "dd-mm-yy" }).val()
 	  });
@@ -105,7 +23,9 @@
 		<h3>${fromName}</h3>
 		<form:form method="post" action="${action}" commandName="frmObject" name="frm" id="frm" class="formular">
 			
-			<table><tr><form:errors path="*" cssClass="error" element="div" /></tr></table>
+			<table><tr><form:errors path="*" cssClass="error" element="div" /></tr>
+			<tr>${error}</tr>
+			</table>
 			<table>
 				<!-- <form:hidden path="id" /> -->
 
@@ -150,68 +70,132 @@
 				</tr>
 				<tr>
 					<td><form:label path="starcastName1"><spring:message code="label.starcastName1" /></form:label></td>
-					<td><form:input path="starcastName1" readonly="${readonly}" tabindex="5" onblur="javascript:validateSize('starcastName1',this.value,30);"  /></td>
+					<td><input type="text" name="h_starcastName1" id="h_starcastName1" value="${h_starcastName1}" onblur="javascript:validateSize('h_starcastName1',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="starcastName2"><spring:message code="label.starcastName2" /></form:label></td>
-					<td><form:input path="starcastName2" readonly="${readonly}" onblur="javascript:validateSize('starcastName2',this.value,30);" tabindex="6" /></td>
+					<td><input type="text" name="h_starcastName2" id="h_starcastName2" value="${h_starcastName2}" readonly="${readonly}" onblur="javascript:validateSize('h_starcastName2',this.value,30);" tabindex="6" ></td>
 				</tr>
+				<c:if test="${(command == 'add') || (command == 'update')}">
+				<tr>
+					<td></td>
+					<td><form:select path="starcastName1" items="${starcastList}"  onchange="fillTextBox('h_starcastName1',this);" /></td>
+				
+					<td></td>
+					<td><form:select path="starcastName2" items="${starcastList}" onchange="fillTextBox('h_starcastName2',this);" /></td>
+				</tr>
+				</c:if>
 				<tr>
 					<td><form:label path="starcastName3"><spring:message code="label.starcastName3" /></form:label></td>
-					<td><form:input path="starcastName3" readonly="${readonly}" onblur="javascript:validateSize('starcastName3',this.value,30);" tabindex="7" /></td>
+					<td><input type="text" name="h_starcastName3" id="h_starcastName3"  value="${h_starcastName3}" onblur="javascript:validateSize('h_starcastName3',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="starcastName4"><spring:message code="label.starcastName4" /></form:label></td>
-					<td><form:input path="starcastName4" readonly="${readonly}" onblur="javascript:validateSize('starcastName4',this.value,30);" tabindex="8" /></td>
+					<td><input type="text" name="h_starcastName4" id="h_starcastName4"  value="${h_starcastName4}" onblur="javascript:validateSize('h_starcastName4',this.value,30);" tabindex="6" ></td>
 				</tr>
+				<c:if test="${(command == 'add') || (command == 'update')}">
+				<tr>
+					<td></td>
+					<td><form:select path="starcastName3" items="${starcastList}"  onchange="fillTextBox('h_starcastName3',this);" /></td>
+				
+					<td></td>
+					<td><form:select path="starcastName4" items="${starcastList}" onchange="fillTextBox('h_starcastName4',this);" /></td>
+				</tr>
+				</c:if>
 				<tr>
 					<td><form:label path="starcastName5"><spring:message code="label.starcastName5" /></form:label></td>
-					<td><form:input path="starcastName5" readonly="${readonly}" onblur="javascript:validateSize('starcastName5',this.value,30);" tabindex="9" /></td>
+					<td><input type="text" name="h_starcastName5" id="h_starcastName5" value="${h_starcastName5}" onblur="javascript:validateSize('h_starcastName5',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="starcastName6"><spring:message code="label.starcastName6" /></form:label></td>
-					<td><form:input path="starcastName6" readonly="${readonly}" onblur="javascript:validateSize('starcastName6',this.value,30);" tabindex="10" /></td>
+					<td><input type="text" name="h_starcastName6" id="h_starcastName6"  value="${h_starcastName6}" onblur="javascript:validateSize('h_starcastName6',this.value,30);" tabindex="6" ></td>
 				</tr>
+				<c:if test="${(command == 'add') || (command == 'update')}">
+				<tr>
+					<td></td>
+					<td><form:select path="starcastName5" items="${starcastList}" onchange="fillTextBox('h_starcastName5',this);" /></td>
+				
+					<td></td>
+					<td><form:select path="starcastName6" items="${starcastList}" onchange="fillTextBox('h_starcastName6',this);" /></td>
+				</tr>
+				</c:if>
 				<tr>
 					<td><form:label path="director1"><spring:message code="label.director1" /></form:label></td>
-					<td><form:input path="director1" readonly="${readonly}" onblur="javascript:validateSize('director1',this.value,30);" tabindex="11"/></td>
+					<td><input type="text" name="h_director1" id="h_director1"  value="${h_director1}" onblur="javascript:validateSize('h_director1',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="director2"><spring:message code="label.director2" /></form:label></td>
-					<td><form:input path="director2" readonly="${readonly}" onblur="javascript:validateSize('director2',this.value,30);" tabindex="12"/></td>
+					<td><input type="text" name="h_director2" id="h_director2"  value="${h_director2}"  onblur="javascript:validateSize('h_director2',this.value,30);" tabindex="6" ></td>
 				</tr>
+				<c:if test="${(command == 'add') || (command == 'update')}">
+				<tr>
+					<td></td>
+					<td><form:select path="director1" items="${directorList}" onchange="fillTextBox('h_director1',this);" /></td>
+				
+					<td></td>
+					<td><form:select path="director2" items="${directorList}" onchange="fillTextBox('h_director2',this);" /></td>
+				</tr>
+				</c:if>
 				<tr>
 					<td><form:label path="director3"><spring:message code="label.director3" /></form:label></td>
-					<td><form:input path="director3" readonly="${readonly}" onblur="javascript:validateSize('director3',this.value,30);" tabindex="13"/></td>
+					<td><input type="text" name="h_director3" id="h_director3" value="${h_director3}"  onblur="javascript:validateSize('h_director3',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="creator1"><spring:message code="label.creator1" /></form:label></td>
-					<td><form:input path="creator1" readonly="${readonly}" onblur="javascript:validateSize('creator1',this.value,30);" tabindex="14"/></td>
+					<td><input type="text" name="h_creator1" id="h_creator1"  value="${h_creator1}" onblur="javascript:validateSize('h_creator1',this.value,30);" tabindex="6" ></td>
 				</tr>
+				<c:if test="${(command == 'add') || (command == 'update')}">
+				<tr>
+					<td></td>
+					<td><form:select path="director3" items="${directorList}" onchange="fillTextBox('h_director3',this);" /></td>
+				
+					<td></td>
+					<td><form:select path="creator1" items="${creatorList}" onchange="fillTextBox('h_creator1',this);" /></td>
+				</tr>
+				</c:if>
 				<tr>
 					<td><form:label path="creator2"><spring:message code="label.creator2" /></form:label></td>
-					<td><form:input path="creator2" readonly="${readonly}" onblur="javascript:validateSize('creator2',this.value,30);"  tabindex="15"/></td>
+					<td><input type="text" name="h_creator2" id="h_creator2" value="${h_creator2}" onblur="javascript:validateSize('h_creator2',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="creator3"><spring:message code="label.creator3" /></form:label></td>
-					<td><form:input path="creator3" readonly="${readonly}" onblur="javascript:validateSize('creator3',this.value,30);" tabindex="16"/></td>
+					<td><input type="text" name="h_creator3" id="h_creator3" value="${h_creator3}"  onblur="javascript:validateSize('h_creator3',this.value,30);" tabindex="6" ></td>
 				</tr>
+				<c:if test="${(command == 'add') || (command == 'update')}">
+				<tr>
+					<td></td>
+					<td><form:select path="creator2" items="${creatorList}" onchange="fillTextBox('h_creator2',this);" /></td>
+				
+					<td></td>
+					<td><form:select path="creator3" items="${creatorList}" onchange="fillTextBox('h_creator3',this);" /></td>
+				</tr>
+				</c:if>
 				<tr>
 					<td><form:label path="genre1"><spring:message code="label.genre1" /></form:label></td>
-					<td>					
-						<form:input path="genre1" readonly="${readonly}" onblur="javascript:validateSize('genre1',this.value,20);" tabindex="17"/>
-	                </td>
+					<td><input type="text" name="h_genre1" id="h_genre1" value="${h_genre1}"  onblur="javascript:validateSize('h_genre1',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="genre2"><spring:message code="label.genre2" /></form:label></td>
-					<td>					
-					<form:input path="genre2" readonly="${readonly}" onblur="javascript:validateSize('genre2',this.value,20);" tabindex="18"/>
-	                </td>
+					<td><input type="text" name="h_genre2" id="h_genre2" value="${h_genre2}" onblur="javascript:validateSize('h_genre2',this.value,30);" tabindex="6" ></td>
 				</tr>
+				<c:if test="${(command == 'add') || (command == 'update')}">
+				<tr>
+					<td></td>
+					<td><form:select path="genre1" items="${genreList}" onchange="fillTextBox('h_genre1',this);" /></td>
+				
+					<td></td>
+					<td><form:select path="genre2" items="${genreList}" onchange="fillTextBox('h_genre2',this);" /></td>
+				</tr>
+				</c:if>
 				<tr>
 					<td><form:label path="genre3"><spring:message code="label.genre3" /></form:label></td>
-					<td>					
-					<form:input path="genre3" readonly="${readonly}" onblur="javascript:validateSize('genre3',this.value,20);" tabindex="19"/>
-	                </td>
+					<td><input type="text" name="h_genre3" id="h_genre3" value="${h_genre3}" onblur="javascript:validateSize('h_genre3',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="genreExtra"><spring:message code="label.genreExtra" /></form:label></td>
-					<td>					
-						<form:input path="genreExtra" readonly="${readonly}" onblur="javascript:validateSize('genreExtra',this.value,20);" tabindex="20"/>
-	                </td>
+					<td><input type="text" name="h_genreExtra" id="h_genreExtra" value="${h_genreExtra}" onblur="javascript:validateSize('h_genreExtra',this.value,30);" tabindex="6" ></td>
 				</tr>
+				<c:if test="${(command == 'add') || (command == 'update')}">
+				<tr>
+					<td></td>
+					<td><form:select path="genre3" items="${genreList}" onchange="fillTextBox('h_genre3',this);" /></td>
+				
+					<td></td>
+					<td><form:select path="genreExtra" items="${genreList}" onchange="fillTextBox('h_genreExtra',this);" /></td>
+				</tr>
+				</c:if>
 				<tr>
 					<td><form:label path="country"><spring:message code="label.country" /></form:label></td>
 					<td>
@@ -226,17 +210,23 @@
 					<td><form:label path="tagLine"><spring:message code="label.tagLine" /></form:label></td>
 					<td><form:textarea path="tagLine" rows="5" cols="100" readonly="${readonly}" onblur="javascript:validateSize('tagLine',this.value,500);" tabindex="22"/></td>
 				</tr>
+				
 				<tr>
 					<td><form:label path="movPath"><spring:message code="label.movPath" /></form:label></td>
 					<td><form:input path="movPath" readonly="true" size="50" onblur="javascript:validateSize('movPath',this.value,50);" tabindex="23" /></td>
-					
+				
 					<td><form:label path="dvdLocation"><spring:message code="label.dvdLocation" /></form:label></td>
-					<td><%-- <form:input path="dvdLocation" readonly="${readonly}" onblur="javascript:validateSize('dvdLocation',this.value,20);" tabindex="24"/> --%>
-					<%-- <form:select path="dvdLocation" items="${dvdLocationList}" multiple="true" />  --%>
-					<form:input path="dvdLocation" readonly="${readonly}" size="20" onblur="javascript:validateSize('dvdLocation',this.value,20);" tabindex="24"/>
-					
-					</td>
+					<td><input type="text" name="h_dvdLocation" id="h_dvdLocation" value="${h_dvdLocation}" onblur="javascript:validateSize('h_dvdLocation',this.value,30);" tabindex="6" ></td>
 				</tr>
+				<c:if test="${(command == 'add') || (command == 'update')}">
+				<tr>
+					<td></td>
+					<td></td>
+				
+					<td></td>
+					<td><form:select path="dvdLocation" items="${dvdLocationList}"  onchange="fillTextBox('h_dvdLocation',this);" /></td>
+				</tr>
+				</c:if>
 				<tr>
 					<td><form:label path="entryDt"><spring:message code="label.entryDt" /></form:label></td>
 					<td><form:input path="entryDt" readonly="${readonly}" value="${todayDate}" tabindex="25" /></td>

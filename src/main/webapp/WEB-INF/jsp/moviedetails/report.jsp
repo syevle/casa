@@ -6,6 +6,8 @@
 <%
 	response.setContentType("application/vnd.ms-excel");
     response.setHeader("Content-Disposition", "attachment; filename=\"MovieDetailReport.xls\"");
+   /*  response.setContentType("application/pdf");
+    response.setHeader("Content-Disposition", "attachment; filename=\"MovieDetailReport.pdf\""); */
 %>
 <html>
 <head>

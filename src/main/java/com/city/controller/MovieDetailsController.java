@@ -3,16 +3,22 @@ package com.city.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.collections.map.LinkedMap;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +26,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -89,7 +96,46 @@ public class MovieDetailsController {
 	@RequestMapping(value = Constant.UPDATE, method = RequestMethod.POST)
 	public String update(
 			@ModelAttribute("frmObject") @Valid MovieDetails frmObject,
-			BindingResult result, ModelMap map) {
+			BindingResult result, ModelMap map,HttpServletRequest request) {
+		
+		String h_starcastName1 = request.getParameter("h_starcastName1");
+		String h_starcastName2 = request.getParameter("h_starcastName2");
+		String h_starcastName3 = request.getParameter("h_starcastName3");
+		String h_starcastName4 = request.getParameter("h_starcastName4");
+		String h_starcastName5 = request.getParameter("h_starcastName5");
+		String h_starcastName6 = request.getParameter("h_starcastName6");
+		String h_director1 = request.getParameter("h_director1");
+		String h_director2 = request.getParameter("h_director2");
+		String h_director3 = request.getParameter("h_director3");
+		String h_creator1 = request.getParameter("h_creator1");
+		String h_creator2 = request.getParameter("h_creator2");
+		String h_creator3 = request.getParameter("h_creator3");
+		String h_genre1 = request.getParameter("h_genre1");
+		String h_genre2 = request.getParameter("h_genre2");
+		String h_genre3 = request.getParameter("h_genre3");
+		String h_genreExtra = request.getParameter("h_genreExtra");
+		String h_dvdLocation = request.getParameter("h_dvdLocation");
+		
+		
+		
+		frmObject.setStarcastName1(h_starcastName1);
+		frmObject.setStarcastName2(h_starcastName2);
+		frmObject.setStarcastName3(h_starcastName3);
+		frmObject.setStarcastName4(h_starcastName4);
+		frmObject.setStarcastName5(h_starcastName5);
+		frmObject.setStarcastName6(h_starcastName6);
+		frmObject.setDirector1(h_director1);
+		frmObject.setDirector2(h_director2);
+		frmObject.setDirector3(h_director3);
+		frmObject.setCreator1(h_creator1);
+		frmObject.setCreator2(h_creator2);
+		frmObject.setCreator3(h_creator3);
+		frmObject.setGenre1(h_genre1);
+		frmObject.setGenre1(h_genre2);
+		frmObject.setGenre1(h_genre3);
+		frmObject.setGenreExtra(h_genreExtra);
+		frmObject.setDvdLocation(h_dvdLocation);
+		
 		validator.validate(frmObject, result);
 		if (result.hasErrors()) {
 			map.put("requestMapping", REQUESTMAPPING);
@@ -109,17 +155,99 @@ public class MovieDetailsController {
 		frmObject.setMovPath(frmObject.getMovName()+".jpg")	;	
 		movieDetailsAction.saveOrUpdate(frmObject);
 
-		return Constant.REDIRECT + PATH + Constant.LIST;
+		
+		
+		map.put("movieCodeList", movieCodeList());
+		map.put("movieNameList", movieNameList());
+		map.put("starcastList", starcastList());
+		map.put("genreList", genreList());
+		map.put("dvdLocationList", dvdLocationList());
+		
+		map.put("frmObject", frmObject);
+		map.put("requestMapping", REQUESTMAPPING);
+		
+		
+		return Constant.REDIRECT + PATH + Constant.SERCH;
 	}
 
 	@RequestMapping(value = Constant.ADD, method = RequestMethod.POST)
 	public String add(
 			@ModelAttribute("frmObject") @Valid MovieDetails frmObject,
-			BindingResult result, ModelMap map) {
+			BindingResult result, ModelMap map,HttpServletRequest request) throws RuntimeException {
+		String movId = frmObject.getId();
+		MovieDetails movieDetails = HibernateDaoFactory.getMovieDetailsDao().get(movId);
+		
+		String h_starcastName1 = request.getParameter("h_starcastName1");
+		String h_starcastName2 = request.getParameter("h_starcastName2");
+		String h_starcastName3 = request.getParameter("h_starcastName3");
+		String h_starcastName4 = request.getParameter("h_starcastName4");
+		String h_starcastName5 = request.getParameter("h_starcastName5");
+		String h_starcastName6 = request.getParameter("h_starcastName6");
+		String h_director1 = request.getParameter("h_director1");
+		String h_director2 = request.getParameter("h_director2");
+		String h_director3 = request.getParameter("h_director3");
+		String h_creator1 = request.getParameter("h_creator1");
+		String h_creator2 = request.getParameter("h_creator2");
+		String h_creator3 = request.getParameter("h_creator3");
+		String h_genre1 = request.getParameter("h_genre1");
+		String h_genre2 = request.getParameter("h_genre2");
+		String h_genre3 = request.getParameter("h_genre3");
+		String h_genreExtra = request.getParameter("h_genreExtra");
+		String h_dvdLocation = request.getParameter("h_dvdLocation");
+		
+		
+		
+		frmObject.setStarcastName1(h_starcastName1);
+		frmObject.setStarcastName2(h_starcastName2);
+		frmObject.setStarcastName3(h_starcastName3);
+		frmObject.setStarcastName4(h_starcastName4);
+		frmObject.setStarcastName5(h_starcastName5);
+		frmObject.setStarcastName6(h_starcastName6);
+		frmObject.setDirector1(h_director1);
+		frmObject.setDirector2(h_director2);
+		frmObject.setDirector3(h_director3);
+		frmObject.setCreator1(h_creator1);
+		frmObject.setCreator2(h_creator2);
+		frmObject.setCreator3(h_creator3);
+		frmObject.setGenre1(h_genre1);
+		frmObject.setGenre1(h_genre2);
+		frmObject.setGenre1(h_genre3);
+		frmObject.setGenreExtra(h_genreExtra);
+		frmObject.setDvdLocation(h_dvdLocation);
+		
+		
+		
+		
 		frmObject.setAvalStatus('Y');
 		frmObject.setUplodReq('Y');
+		
+		
+		
 		validator.validate(frmObject, result);
+		
+		if(movieDetails != null){
+			ObjectError error = new ObjectError("MovieDetails", "Movie must not be added. Moview Id already exit in library.");
+			result.addError(error);
+		}
+		
+		
 		if (result.hasErrors()) {
+			
+			fillViewUpdateMap( map,frmObject );
+			
+			map.put("action", Constant.ROOTPATH + PATH + Constant.ADD);
+			map.put("fromName", "To Add New Movie");
+			map.put("countryList", countryData());
+			map.put("genreList", genreList());
+			map.put("dvdLocationList", dvdLocationList());
+			map.put("languageList", languagesData());
+			map.put("dvdLocationList", dvdLocationList());
+			map.put("todayDate", ApplicationUtil.getTodayDate());
+			map.put("creatorList", creatorList());
+			map.put("directorList", directorList());
+			map.put("starcastList", starcastList());
+			map.put("disabled", "true");
+			
 			map.put("requestMapping", REQUESTMAPPING);
 			map.put("command", "add");
 			map.put("readonly", "false");
@@ -130,145 +258,42 @@ public class MovieDetailsController {
 
 		return Constant.REDIRECT + PATH + Constant.LIST;
 	}
-	private String genreList() {
-		List<Genre> genreList = HibernateDaoFactory.getGenreDao()
-				.findAll();
-		StringBuffer genreString = new StringBuffer();
-		for (Genre genre : genreList) {
-			genreString.append("\"").append(genre.getGenreName())
-					.append("\"").append(",");
-		}
-		if (genreString.length() == 0) {
-			return genreString.toString();
-		} else {
-			return genreString.substring(0, genreString.length() - 1)
-					.toString();
-		}
-	}
-	private String dvdLocationList() {
-		List<DvdLocation> dvdLocationList = HibernateDaoFactory.getDvdLocationDao()
-				.findAll();
-		StringBuffer dvdLocationString = new StringBuffer();
-		for (DvdLocation dvdLocation : dvdLocationList) {
-			dvdLocationString.append("\"").append(dvdLocation.getDvdLocation())
-					.append("\"").append(",");
-		}
-		if (dvdLocationString.length() == 0) {
-			return dvdLocationString.toString();
-		} else {
-			return dvdLocationString.substring(0, dvdLocationString.length() - 1)
-					.toString();
-		}
-	}
-	private String creatorList() {
-		List<Creator> creatorList = HibernateDaoFactory.getCreatorDao()
-				.findAll();
-		StringBuffer creatorString = new StringBuffer();
-		for (Creator creator : creatorList) {
-			creatorString.append("\"").append(creator.getCreatorName())
-					.append("\"").append(",");
-		}
-		if (creatorString.length() == 0) {
-			return creatorString.toString();
-		} else {
-			return creatorString.substring(0, creatorString.length() - 1)
-					.toString();
-		}
-	}
-	
-	private String directorList() {
-		List<Director> directorList = HibernateDaoFactory.getDirectorDao().findAll();
-		StringBuffer directorString = new StringBuffer();
-		for (Director director : directorList) {
-			directorString.append("\"").append(director.getDirectorName())
-					.append("\"").append(",");
-		}
-		if (directorString.length() == 0) {
-			return directorString.toString();
-		} else {
-			return directorString.substring(0, directorString.length() - 1)
-					.toString();
-		}
-	}
-	
-	private String starcastList() {
-		List<Starcast> starcastList = HibernateDaoFactory.getStarcastDao().findAll();
-		StringBuffer starcastString = new StringBuffer();
-		for (Starcast starcast : starcastList) {
-			starcastString.append("\"").append(starcast.getStarcastName())
-					.append("\"").append(",");
-		}
-		if (starcastString.length() == 0) {
-			return starcastString.toString();
-		} else {
-			return starcastString.substring(0, starcastString.length() - 1)
-					.toString();
-		}
-	}
 	
 	
-	private String movieCodeList() {
-		List<MovieDetails> movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findAll();
-		StringBuffer movieDetailsString = new StringBuffer();
-		for (MovieDetails movieDetails : movieDetailsList) {
-			movieDetailsString.append("\"").append(movieDetails.getId())
-					.append("\"").append(",");
-		}
-		if (movieDetailsString.length() == 0) {
-			return movieDetailsString.toString();
-		} else {
-			return movieDetailsString.substring(0, movieDetailsString.length() - 1)
-					.toString();
-		}
-	}
-	private String movieNameList() {
-		List<MovieDetails> movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findAll();
-		StringBuffer movieDetailsString = new StringBuffer();
-		for (MovieDetails movieDetails : movieDetailsList) {
-			movieDetailsString.append("\"").append(movieDetails.getMovName())
-					.append("\"").append(",");
-		}
-		if (movieDetailsString.length() == 0) {
-			return movieDetailsString.toString();
-		} else {
-			return movieDetailsString.substring(0, movieDetailsString.length() - 1)
-					.toString();
-		}
-	}
-	/*private String genreAllData() {
-		StringBuffer generString = new StringBuffer();
-		for (String gener : genreData()) {
-			generString.append("\"").append(gener.toString())
-					.append("\"").append(",");
-		}
-		if (generString.length() == 0) {
-			return generString.toString();
-		} else {
-			return generString.substring(0, generString.length() - 1)
-					.toString();
-		}
-	}*/
-
-	public Integer nextMovieId(){
-		Integer id = null;
-		List<Object> list = HibernateDaoFactory.getMovieDetailsDao().getNativeQuery("select TRAN_SEQ.nextval as IDs from dual");
-		for(Object row : list){ 
-			id = new Integer(row.toString());
-		}
-		return id;
-	}
 	// -----------------------------------------------------------------
-	@RequestMapping(value = Constant.LIST, method = RequestMethod.POST)
-	public String list(Map<String, Object> map,ModelMap model,@ModelAttribute("frmObject") MovieDetails frmObject) {
+	@RequestMapping(value = Constant.SERCH, method = RequestMethod.GET)
+	public String serch(Map<String, Object> map,ModelMap model,@ModelAttribute("frmObject") MovieDetails frmObject) {
+		
 		// below line important it.
-		if(frmObject.getId() !=null)
-			map.put("id", frmObject.getId());
-		if(frmObject.getMovName() != null)
-			map.put("movName", frmObject.getMovName());
-		if(frmObject.getStarcastName1() !=null)
-			map.put("starcastName1", frmObject.getStarcastName1());
-		if(frmObject.getGenre1() != null)
-			map.put("genre1", frmObject.getGenre1());
+		map.put("movieCodeList", movieCodeList());
+		map.put("movieNameList", movieNameList());
+		map.put("starcastList", starcastList());
+		map.put("genreList", genreList());
+		map.put("dvdLocationList", dvdLocationList());
+		
+		map.put("frmObject", frmObject);
+		map.put("requestMapping", REQUESTMAPPING);
+		
+		return PATH + Constant.SERCH;
+	}
+	@RequestMapping(value = Constant.LIST, method = RequestMethod.POST)
+	public String list(Map<String, Object> map,ModelMap model,@ModelAttribute("frmObject") MovieDetails frmObject,HttpServletRequest request) {
+		String id = request.getParameter("h_id");
+		String movName = request.getParameter("h_movName");
+		String starcastName = request.getParameter("h_starcastName");
+		String genre = request.getParameter("h_genre");
+		
+		
+		// below line important it.
+				if(id !=null && id.length() > 0)
+					map.put("id", id.trim());
+				if(movName != null && movName.length() > 0)
+					map.put("movName", movName.trim());
+				if(starcastName !=null && starcastName.length() > 0)
+					map.put("starcastName1", starcastName.trim());
+				if(genre != null && genre.length() > 0)
+					map.put("genre1", genre.trim());
+		
 		return Constant.REDIRECT + PATH + Constant.LIST;
 	}
 	@RequestMapping(value = Constant.LIST, method = RequestMethod.GET)
@@ -282,38 +307,37 @@ public class MovieDetailsController {
 		List<Criterion> criterionList = new ArrayList<Criterion>();
 		
 		if(movieCode != null && movieCode.trim().length() > 0 ){
-			Criterion id = Restrictions.like("id", movieCode+"%").ignoreCase();
+			Criterion id = Restrictions.like("id", movieCode,MatchMode.START).ignoreCase();
 			criterionList.add(id);
 		} 
 		if(movieName != null && movieName.trim().length() > 0 ){
-			Criterion name = Restrictions.like("movName", movieName+"%").ignoreCase();
+			Criterion name = Restrictions.like("movName",movieName,MatchMode.ANYWHERE).ignoreCase();
 			criterionList.add(name);
 		}
 		if(starcastName != null && starcastName.trim().length() > 0 ){
 			Disjunction disjunction = Restrictions.disjunction();
-			disjunction.add(Restrictions.like("starcastName1", starcastName+"%").ignoreCase());
-			disjunction.add(Restrictions.like("starcastName2", starcastName+"%").ignoreCase());
-			disjunction.add(Restrictions.like("starcastName3", starcastName+"%").ignoreCase());
-			disjunction.add(Restrictions.like("starcastName4", starcastName+"%").ignoreCase());
-			disjunction.add(Restrictions.like("starcastName5", starcastName+"%").ignoreCase());
-			disjunction.add(Restrictions.like("starcastName6", starcastName+"%").ignoreCase());
+			disjunction.add(Restrictions.like("starcastName1", starcastName,MatchMode.ANYWHERE).ignoreCase());
+			disjunction.add(Restrictions.like("starcastName2", starcastName,MatchMode.ANYWHERE).ignoreCase());
+			disjunction.add(Restrictions.like("starcastName3", starcastName,MatchMode.ANYWHERE).ignoreCase());
+			disjunction.add(Restrictions.like("starcastName4", starcastName,MatchMode.ANYWHERE).ignoreCase());
+			disjunction.add(Restrictions.like("starcastName5", starcastName,MatchMode.ANYWHERE).ignoreCase());
+			disjunction.add(Restrictions.like("starcastName6", starcastName,MatchMode.ANYWHERE).ignoreCase());
+			
 			criterionList.add(disjunction);
 		}
 		if(genre != null && genre.trim().length() > 0 ){
 			Disjunction disjunction = Restrictions.disjunction();
-			disjunction.add(Restrictions.like("genre1", genre+"%").ignoreCase());
-			disjunction.add(Restrictions.like("genre2", genre+"%").ignoreCase());
-			disjunction.add(Restrictions.like("genre3", genre+"%").ignoreCase());
-			disjunction.add(Restrictions.like("genreExtra", genre+"%").ignoreCase());
+			disjunction.add(Restrictions.like("genre1", genre,MatchMode.ANYWHERE).ignoreCase());
+			disjunction.add(Restrictions.like("genre2", genre,MatchMode.ANYWHERE).ignoreCase());
+			disjunction.add(Restrictions.like("genre3", genre,MatchMode.ANYWHERE).ignoreCase());
+			disjunction.add(Restrictions.like("genreExtra", genre,MatchMode.ANYWHERE).ignoreCase());
 			criterionList.add(disjunction);
 		}
 		if(criterionList.size() == 0){
 			readOnly = false;
-			Criterion name = Restrictions.like("movName", "AA%").ignoreCase();
-			criterionList.add(name);
-			movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findByCriteria(criterionList,20,Order.asc("movName"));
+			movieDetailsList = new ArrayList<MovieDetails>();
 		}else{
-			movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findByCriteria(criterionList,null,Order.asc("movName"));
+			movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findByCriteria(criterionList,null,Order.desc("movName"));
 		}
 		//map.put("id", movieCode);
 		map.put("movieCodeList", movieCodeList());
@@ -371,6 +395,8 @@ public class MovieDetailsController {
 		map.put("starcastList", starcastList());
 		map.put("readonly", "false");
 		map.put("disabled", "true");
+		
+		
 		return PATH + Constant.ACTION;
 	}
 
@@ -396,6 +422,9 @@ public class MovieDetailsController {
 				map.put("creatorList", creatorList());
 				map.put("directorList", directorList());
 				map.put("starcastList", starcastList());
+				
+				fillViewUpdateMap( map,frmObject );
+				
 			} else if (command.equalsIgnoreCase("delete")) {
 				map.put("requestMapping", REQUESTMAPPING);
 				map.put("fromName", "To Delete Movie");
@@ -406,6 +435,10 @@ public class MovieDetailsController {
 				map.put("dvdLocationList", dvdLocationList());
 				map.put("languageList", languagesData());
 				map.put("dvdLocationList", dvdLocationList());
+				
+				
+				
+				fillViewUpdateMap( map,frmObject );
 			} else {
 				map.put("fromName", "Movie Details");
 				map.put("countryList", countryData());
@@ -416,12 +449,42 @@ public class MovieDetailsController {
 				map.put("command", "get");
 				map.put("readonly", "true");
 				map.put("disabled", "true");
+				
+				
+				
+				
+				fillViewUpdateMap( map,frmObject );
 			}
 			return PATH + Constant.ACTION;
 
 		} else {
 			return Constant.REDIRECT + PATH + Constant.LIST;
 		}
+	}
+	public void fillViewUpdateMap(Map<String, Object> map,MovieDetails frmObject ) {
+		map.put("h_starcastName1", frmObject.getStarcastName1());
+		map.put("h_starcastName2", frmObject.getStarcastName2());
+		map.put("h_starcastName3", frmObject.getStarcastName3());
+		map.put("h_starcastName4", frmObject.getStarcastName4());
+		map.put("h_starcastName5", frmObject.getStarcastName5());
+		map.put("h_starcastName6", frmObject.getStarcastName6());
+		
+		map.put("h_director1", frmObject.getDirector1());
+		map.put("h_director2",  frmObject.getDirector2());
+		map.put("h_director3",  frmObject.getDirector3());
+		
+		map.put("h_creator1", frmObject.getCreator1());
+		map.put("h_creator2", frmObject.getCreator2());
+		map.put("h_creator3", frmObject.getCreator3());
+		
+		map.put("h_genre1", frmObject.getGenre1());
+		map.put("h_genre2", frmObject.getGenre2());
+		map.put("h_genre3", frmObject.getGenre3());
+		map.put("h_genreExtra", frmObject.getGenreExtra());
+		
+		map.put("h_dvdLocation", frmObject.getDvdLocation());
+		
+	
 	}
 	protected List<String> countryData() {
 		List<String> list = new LinkedList<String>();
@@ -473,45 +536,9 @@ public class MovieDetailsController {
 		countryList.add("Turkey");
 		countryList.add("UK");
 		countryList.add("USA");
-		//countryList.add("-----------------------------------------------");
 		list.addAll(countryList);
 		return list;
 	}
-	
-	/*protected List<String> genreData() {
-		List<String> list = new LinkedList<String>();
-		list.add("");
-		Set<String> genreList = new TreeSet<String>();
-		genreList.add("Action");
-		genreList.add("Adventure");
-		genreList.add("Drama");
-		genreList.add("History");
-		genreList.add("Romance");
-		genreList.add("Thriller");
-		genreList.add("War");
-		genreList.add("Family");
-		genreList.add("Fantasy");
-		genreList.add("Comedy");
-		genreList.add("Animation");
-		genreList.add("Horror");
-		genreList.add("Sci-Fi");
-		genreList.add("Musical");
-		genreList.add("Western");
-		genreList.add("Sport");
-		genreList.add("Biography");
-		genreList.add("Mystery");
-		genreList.add("Documentary");
-		genreList.add("Film-Noir");
-		genreList.add("TV Series");
-		genreList.add("Ray Lawrence");
-		genreList.add("Reality-TV");
-		genreList.add("TV mini-series");
-		genreList.add("Talk Show");
-		genreList.add("Independent");
-		//genreList.add("-----------------------------------------------");
-		list.addAll(genreList);
-		return list;
-	}*/
 	protected List<String> languagesData() {
 		List<String> list = new LinkedList<String>();
 		list.add("");
@@ -552,56 +579,117 @@ public class MovieDetailsController {
 		languages.add("Taiwanese");
 		languages.add("Thai");
 		languages.add("Turkish");
-		//languages.add("-----------------------------------------------");
-		list.addAll(languages);
-		return list;
-	}
-	/*protected List<String> dvdLocationList() {
-		List<String> list = new LinkedList<String>();
-		Set<String> languages = new TreeSet<String>();
-		languages.add("C");
-		languages.add("D");
-		languages.add("E");
-		languages.add("F");
-		languages.add("G");
-		
-		//languages.add("-----------------------------------------------");
-		list.addAll(languages);
-		return list;
-	}*/
-	/*protected List<String> movieCodeList() {
-		List<String> list = new LinkedList<String>();
-		list.add("SELECT");
-		Set<String> languages = new TreeSet<String>();
-		List<MovieDetails> movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findAll();	
-		for (MovieDetails movieDetails : movieDetailsList) {
-			languages.add(movieDetails.getId());
-		}
 		list.addAll(languages);
 		return list;
 	}
 	
-	protected List<String> movieNameList() {
-		List<String> list = new LinkedList<String>();
-		list.add("SELECT");
-		Set<String> languages = new TreeSet<String>();
-		List<MovieDetails> movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findAll();	
-		for (MovieDetails movieDetails : movieDetailsList) {
-			languages.add(movieDetails.getMovName());
+	private Map<String,String> genreList() {
+		Map<String,String> mySortedMap = new TreeMap<String,String>();
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		List<Genre> genreList = HibernateDaoFactory.getGenreDao().findByCriteria(criterionList,null,Order.asc("genreName"));
+		Map<String,String> map = new LinkedHashMap<String,String>();
+		map.put("", "");
+			for (Genre genre : genreList) {
+				if(genre.getGenreName() != null)
+				mySortedMap.put(genre.getGenreName().toLowerCase(), genre.getGenreName());
+			}
+			map.putAll(mySortedMap);
+		return map;
+	}
+	
+	private  Map<String,String> dvdLocationList() {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		List<DvdLocation> dvdLocationList = HibernateDaoFactory.getDvdLocationDao().findByCriteria(criterionList,null,Order.asc("dvdLocation"));
+		Map<String,String> mySortedMap = new TreeMap<String,String>();
+		Map<String,String> map = new LinkedHashMap<String,String>();
+		map.put("", "");
+		for (DvdLocation dvdLocation : dvdLocationList) {
+			if(dvdLocation.getDvdLocation() != null)
+				mySortedMap.put(dvdLocation.getDvdLocation().toLowerCase(), dvdLocation.getDvdLocation());
+			}
+		map.putAll(mySortedMap);
+		return map;
+	}
+	
+	private  Map<String,String> creatorList() {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		List<Creator> creatorList   = HibernateDaoFactory.getCreatorDao().findByCriteria(criterionList,null,Order.asc("creatorName"));
+		Map<String,String> mySortedMap = new TreeMap<String,String>();
+		Map<String,String> map = new LinkedHashMap<String,String>();
+		map.put("", "");
+			for (Creator creator : creatorList) {
+				if(creator.getCreatorName() != null)
+				mySortedMap.put(creator.getCreatorName().toLowerCase(), creator.getCreatorName());
+			}
+			map.putAll(mySortedMap);
+			return map;
+	}
+	
+	private  Map<String,String> directorList() {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		List<Director> directorList = HibernateDaoFactory.getDirectorDao().findByCriteria(criterionList,null,Order.asc("directorName"));
+		Map<String,String> mySortedMap = new TreeMap<String,String>();
+		Map<String,String> map = new LinkedHashMap<String,String>();
+		map.put("", "");
+			for (Director director : directorList) {
+				if(director.getDirectorName() != null)
+				//list.add(director.getDirectorName().trim());
+				mySortedMap.put(director.getDirectorName().toLowerCase(), director.getDirectorName());
+			}
+			map.putAll(mySortedMap);
+		return map;
+	}
+	
+	private  Map<String,String> starcastList() {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		List<Starcast> starcastList = HibernateDaoFactory.getStarcastDao().findByCriteria(criterionList,null,Order.asc("starcastName"));
+		Map<String,String> mySortedMap = new TreeMap<String,String>();
+		Map<String,String> map = new LinkedHashMap<String,String>();
+		map.put("", "");
+			for (Starcast starcast : starcastList) {
+				if(starcast.getStarcastName() != null)
+					mySortedMap.put(starcast.getStarcastName().toLowerCase(), starcast.getStarcastName());
+			}
+			map.putAll(mySortedMap);
+		return map;
+	}
+	
+	
+	private  Map<String,String> movieCodeList() {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		List<MovieDetails> movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findByCriteria(criterionList,null,Order.asc("id"));
+		Map<String,String> mySortedMap = new TreeMap<String,String>();
+		Map<String,String> map = new LinkedHashMap<String,String>();
+		map.put("", "");
+			for (MovieDetails movieDetails : movieDetailsList) {
+				if(movieDetails.getId() != null)
+					mySortedMap.put(movieDetails.getId().toLowerCase(), movieDetails.getId());
+			}
+			map.putAll(mySortedMap);
+		return map;
+	}
+	
+	private  Map<String,String> movieNameList() {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		List<MovieDetails> movieDetailsList = HibernateDaoFactory.getMovieDetailsDao().findByCriteria(criterionList,null,Order.asc("movName"));
+		Map<String,String> mySortedMap = new TreeMap<String,String>();
+		Map<String,String> map = new LinkedHashMap<String,String>();
+		map.put("", "");
+			for (MovieDetails movieDetails : movieDetailsList) {
+				if(movieDetails.getMovName() != null)
+					mySortedMap.put(movieDetails.getMovName().toLowerCase(), movieDetails.getMovName());
+			}
+			map.putAll(mySortedMap);
+			return map;
+	}
+
+	public Integer nextMovieId(){
+		Integer id = null;
+		List<Object> list = HibernateDaoFactory.getMovieDetailsDao().getNativeQuery("select TRAN_SEQ.nextval as IDs from dual");
+		for(Object row : list){ 
+			id = new Integer(row.toString());
 		}
-		list.addAll(languages);
-		return list;
-	}*/
-	/*private List<String> starcastAllList() {
-		
-		List<String> list = new LinkedList<String>();
-		list.add("SELECT");
-		Set<String> languages = new TreeSet<String>();
-		List<Starcast> starcastList = HibernateDaoFactory.getStarcastDao().findAll();
-		for (Starcast starcast : starcastList) {
-			languages.add(starcast.getStarcastName());
-		}
-		list.addAll(languages);
-		return list;
-	}*/
+		return id;
+	}
+	
 }
