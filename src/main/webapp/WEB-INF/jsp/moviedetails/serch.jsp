@@ -6,20 +6,53 @@
 <%@ include file="movieDetailsJs.jsp"%>
 
 <script>
-	function fillTextBox(name, data) {
-		document.getElementById(name).value = data.value;
-	}
+
 	function validateForm() {
+		/* var fromDate = document.getElementById("h_id");
+		var toDate = document.getElementById("h_id");
+		if (Date.parse(fromDate) > Date.parse(toDate)) {
+			alert("Invalid Date Range!\nStart Date cannot be after End Date!")
+			return false;
+			}
+		 */
 		var textBox = document.getElementById("h_id");
 		var textLength = textBox.value.length;
-		if(textLength < 3)
+		if(textLength < 3 && textBox > 0)
 		{
-			alert("hierer");
+			alert("Movie code should be 3 Character");
 		    return false;
 		}
 		return true;
 	}
 </script>
+
+
+
+<%-- below code used for autocompleter --%>
+<style type="text/css" title="currentStyle">
+@import "<%=request.getContextPath()%>/media/css/jquery-ui.css";
+</style>
+
+<%-- <script type="text/javascript" language="javascript" src="<%=request.getContextPath()%>/media/js/jquery-1.9.1.js"></script> --%>
+<script type="text/javascript" language="javascript" src="<%=request.getContextPath()%>/media/js/jquery-ui.js"></script>
+ 
+  <script>
+   
+  
+  
+	function fillTextBox(name, data) {
+		//document.getElementById(name).value = data.value;
+	   var e = data;
+	   var str = e.options[e.selectedIndex].text;
+	   document.getElementById(name).value = str;
+	}
+  $(function() {
+	    $( "#fromDate" ).datepicker({ dateFormat: "dd-mm-yy" }).val()
+	  });
+  $(function() {
+	    $( "#toDate" ).datepicker({ dateFormat: "dd-mm-yy" }).val()
+	  });  
+  </script>	
 
 <body onload="setFoucs('movName');">
 	<div id="outer">
@@ -104,6 +137,21 @@
 											<td><form:select path="genre1" items="${genreList}"
 													onchange="fillTextBox('h_genre',this);" />
 											</td>
+										</tr>
+									</table></td>
+
+							</tr>
+							
+							<tr>
+								<td>
+									<table>
+										<tr>
+											<td><label for="fromReleaseDate">From Release Date >=</label>
+											</td>
+											<td><input type="text" name="fromDate" id="fromDate"></td>
+											<td><label for="toReleaseDate">To Release Date <=</label>
+											</td>
+											<td><input type="text" name="toDate" id="toDate"></td>
 										</tr>
 									</table></td>
 

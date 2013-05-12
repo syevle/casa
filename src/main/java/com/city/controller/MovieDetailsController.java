@@ -253,8 +253,7 @@ public class MovieDetailsController {
 		}
 		frmObject.setMovPath(frmObject.getMovName()+".jpg")	;
 		movieDetailsAction.save(frmObject);
-		
-		return Constant.REDIRECT + PATH + Constant.LIST+"?id="+frmObject.getId();
+		return Constant.REDIRECT + PATH + Constant.ADD+"?id="+frmObject.getId();
 	}
 	
 	
@@ -372,11 +371,18 @@ public class MovieDetailsController {
 	 * This method added new records.
 	 */
 	@RequestMapping(value = Constant.ADD, method = RequestMethod.GET)
-	public String add(Map<String, Object> map) {
-		frmObject = getFromObject();
-		frmObject.setId("D"+nextMovieId().toString());
-		frmObject.setAvalStatus('Y');
-		frmObject.setUplodReq('Y');
+	public String add(Map<String, Object> map,HttpServletRequest request) {
+		String movId = request.getParameter("id");
+		if(movId !=null && movId.length() > 0){
+			frmObject   = HibernateDaoFactory.getMovieDetailsDao().get(movId);
+			map.put("movId", frmObject.getId());
+		}else{
+			frmObject = getFromObject();
+			frmObject.setId("D"+nextMovieId().toString());
+			frmObject.setAvalStatus('Y');
+			frmObject.setUplodReq('Y');
+		}
+		
 		map.put("frmObject", frmObject);
 		map.put("requestMapping", REQUESTMAPPING);
 		map.put("action", Constant.ROOTPATH + PATH + Constant.ADD);
@@ -393,6 +399,7 @@ public class MovieDetailsController {
 		map.put("starcastList", starcastList());
 		map.put("readonly", "false");
 		map.put("disabled", "true");
+		
 		
 		
 		return PATH + Constant.ACTION;
@@ -439,6 +446,7 @@ public class MovieDetailsController {
 				fillViewUpdateMap( map,frmObject );
 			} else {
 				map.put("fromName", "Movie Details");
+				map.put("requestMapping", REQUESTMAPPING);
 				map.put("countryList", countryData());
 				map.put("genreList", genreList());
 				map.put("dvdLocationList", dvdLocationList());
@@ -447,6 +455,7 @@ public class MovieDetailsController {
 				map.put("command", "get");
 				map.put("readonly", "true");
 				map.put("disabled", "true");
+				map.put("movId", frmObject.getId());
 				
 				
 				

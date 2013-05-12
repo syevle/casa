@@ -1,5 +1,13 @@
 
- <script>	
+<%-- below code used for autocompleter --%>
+<style type="text/css" title="currentStyle">
+@import "<%=request.getContextPath()%>/media/css/jquery-ui.css";
+</style>
+
+<%-- <script type="text/javascript" language="javascript" src="<%=request.getContextPath()%>/media/js/jquery-1.9.1.js"></script> --%>
+<script type="text/javascript" language="javascript" src="<%=request.getContextPath()%>/media/js/jquery-ui.js"></script>
+ 
+  <script>
    
 	function fillTextBox(name, data) {
 		//document.getElementById(name).value = data.value;
@@ -17,10 +25,15 @@
 
 
 <c:set var="readonly" value="${readonly}" />
+<c:set var="movId" value="${movId}" />
 
 <div id="content">
 	<div id="column1">
-		<h3>${fromName}</h3>
+		<h3>${fromName} 
+		<c:if test="${(not empty movId)}">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/add?id=${movId}">Copy Similar Movie</a>
+		</c:if>
+		</h3>
 		<form:form method="post" action="${action}" commandName="frmObject" name="frm" id="frm" class="formular">
 			
 			<table><tr><form:errors path="*" cssClass="error" element="div" /></tr>
@@ -31,7 +44,7 @@
 
 				<tr>
 					<td><form:label path="id"><spring:message code="label.movCode" /></form:label></td>
-					<td><form:input path="id" readonly="${readonly}" /></td>
+					<td><form:input path="id" readonly="${readonly}" onblur="javascript:validateSize('id',this.value,10);" /></td>
 				
 					<td><form:label path="movName"><spring:message code="label.movName"  /></form:label></td>
 					<td><form:input path="movName" readonly="${readonly}"  size="50" tabindex="1" onblur="javascript:validateSize('movName',this.value,50);" /></td>
