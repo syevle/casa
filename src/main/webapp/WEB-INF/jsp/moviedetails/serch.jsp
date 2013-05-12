@@ -10,7 +10,14 @@
 		document.getElementById(name).value = data.value;
 	}
 	function validateForm() {
-		alert("sdfasfasd");
+		var textBox = document.getElementById("h_id");
+		var textLength = textBox.value.length;
+		if(textLength < 3)
+		{
+			alert("hierer");
+		    return false;
+		}
+		return true;
 	}
 </script>
 
@@ -29,7 +36,8 @@
 	<div id="column1">
 		<h3>${fromName}</h3>
 		
-		
+		<h3>Movie Details</h3>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/add"><%-- <img src="<%=request.getContextPath()%>/media/images/create.png" alt="Add" /> --%>Add</a>
 		<form:form method="POST" action="${requestController}/list"
 						commandName="frmObject" name="frm" id="frm" class="formular">
 						<table style="margin: auto;">
@@ -100,13 +108,13 @@
 									</table></td>
 
 							</tr>
-
+</table>
+<table>
 							<tr>
-								<td><input type="submit" value="Serch"
-									onclick="return validateForm();" />
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Serch" class="styled-button-1"	onclick="return validateForm();" />
 								</td>
-								<td><a href="${requestController}/serch"><input
-										type="button" value="Clear" /> </a>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/serch"><input type="button" class="styled-button-1" value="Clear" /> </a>
 								</td>
 							</tr>
 						</table>

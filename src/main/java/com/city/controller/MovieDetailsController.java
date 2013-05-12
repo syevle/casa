@@ -8,14 +8,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.apache.commons.collections.map.LinkedMap;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
@@ -167,7 +165,7 @@ public class MovieDetailsController {
 		map.put("requestMapping", REQUESTMAPPING);
 		
 		
-		return Constant.REDIRECT + PATH + Constant.SERCH;
+		return Constant.REDIRECT + PATH + Constant.LIST+"?id="+frmObject.getId();
 	}
 
 	@RequestMapping(value = Constant.ADD, method = RequestMethod.POST)
@@ -255,8 +253,8 @@ public class MovieDetailsController {
 		}
 		frmObject.setMovPath(frmObject.getMovName()+".jpg")	;
 		movieDetailsAction.save(frmObject);
-
-		return Constant.REDIRECT + PATH + Constant.LIST;
+		
+		return Constant.REDIRECT + PATH + Constant.LIST+"?id="+frmObject.getId();
 	}
 	
 	
