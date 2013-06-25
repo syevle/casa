@@ -266,6 +266,8 @@ public class MovieDetailsController {
 		map.put("movieNameList", movieNameList());
 		map.put("starcastList", starcastList());
 		map.put("genreList", genreList());
+		map.put("creatorList", creatorList());
+		map.put("languageList", languagesData());
 		map.put("dvdLocationList", dvdLocationList());
 		
 		map.put("frmObject", frmObject);
@@ -279,6 +281,8 @@ public class MovieDetailsController {
 		String movName = request.getParameter("h_movName");
 		String starcastName = request.getParameter("h_starcastName");
 		String genre = request.getParameter("h_genre");
+		String creator = request.getParameter("h_creator");
+		String languages = request.getParameter("h_languages");
 		
 		
 		// below line important it.
@@ -290,6 +294,10 @@ public class MovieDetailsController {
 					map.put("starcastName1", starcastName.trim());
 				if(genre != null && genre.length() > 0)
 					map.put("genre1", genre.trim());
+				if(creator != null && creator.length() > 0)
+					map.put("creator1", creator.trim());
+				if(languages != null && languages.length() > 0)
+					map.put("languages", languages.trim());				
 		
 		return Constant.REDIRECT + PATH + Constant.LIST;
 	}
@@ -300,6 +308,8 @@ public class MovieDetailsController {
 		String movieName = frmObject.getMovName();
 		String starcastName = frmObject.getStarcastName1();
 		String genre = frmObject.getGenre1();
+		String languages = frmObject.getLanguages();
+		String creator = frmObject.getCreator1();
 		List<MovieDetails> movieDetailsList = null;
 		List<Criterion> criterionList = new ArrayList<Criterion>();
 		
@@ -310,6 +320,18 @@ public class MovieDetailsController {
 		if(movieName != null && movieName.trim().length() > 0 ){
 			Criterion name = Restrictions.like("movName",movieName,MatchMode.ANYWHERE).ignoreCase();
 			criterionList.add(name);
+		}
+		if(languages != null && languages.trim().length() > 0 ){
+			Criterion movielanguages = Restrictions.like("languages",languages,MatchMode.ANYWHERE).ignoreCase();
+			criterionList.add(movielanguages);
+		}
+		if(creator != null && creator.trim().length() > 0 ){
+			Disjunction disjunction = Restrictions.disjunction();
+			disjunction.add(Restrictions.like("creator1", creator,MatchMode.ANYWHERE).ignoreCase());
+			disjunction.add(Restrictions.like("creator2", creator,MatchMode.ANYWHERE).ignoreCase());
+			disjunction.add(Restrictions.like("creator3", creator,MatchMode.ANYWHERE).ignoreCase());
+			
+			criterionList.add(disjunction);
 		}
 		if(starcastName != null && starcastName.trim().length() > 0 ){
 			Disjunction disjunction = Restrictions.disjunction();

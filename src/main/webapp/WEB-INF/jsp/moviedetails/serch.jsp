@@ -146,6 +146,42 @@
 								<td>
 									<table>
 										<tr>
+											<td><form:label path="creator1">
+													<spring:message code="label.creator" />
+												</form:label>
+											</td>
+											<td><input type="text" name="h_creator" id="h_creator">
+											</td>
+											<td><form:select path="creator1" items="${creatorList}"
+													onchange="fillTextBox('h_creator',this);" />
+											</td>
+										</tr>
+									</table></td>
+
+							</tr>
+							
+							<tr>
+								<td>
+									<table>
+										<tr>
+											<td><form:label path="languages">
+													<spring:message code="label.languages" />
+												</form:label>
+											</td>
+											<td><input type="text" name="h_languages" id="h_languages">
+											</td>
+											<td><form:select path="languages" items="${languageList}"
+													onchange="fillTextBox('h_languages',this);" />
+											</td>
+										</tr>
+									</table></td>
+
+							</tr>
+							
+<!-- 							<tr>
+								<td>
+									<table>
+										<tr>
 											<td><label for="fromReleaseDate">From Release Date >=</label>
 											</td>
 											<td><input type="text" name="fromDate" id="fromDate"></td>
@@ -155,7 +191,7 @@
 										</tr>
 									</table></td>
 
-							</tr>
+							</tr> -->
 </table>
 <table>
 							<tr>

@@ -15,7 +15,8 @@
 			<h3>Movie Details</h3>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/add"><%-- <img src="<%=request.getContextPath()%>/media/images/create.png" alt="Add" /> --%>Add</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${requestController}/serch"><%-- <img src="<%=request.getContextPath()%>/media/images/ico_xls.gif" alt="Report" /> --%>Serch</a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openNewWindow();"><%-- <img src="<%=request.getContextPath()%>/media/images/ico_xls.gif" alt="Report" /> --%>Report</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openNewWindow();"><%-- <img src="<%=request.getContextPath()%>/media/images/ico_xls.gif" alt="Report" /> --%>Excle Report</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openNewWindow();"><%-- <img src="<%=request.getContextPath()%>/media/images/ico_xls.gif" alt="Report" /> --%>Html Report</a>
 			<div id="container">
 				<div class="demo_jui">
 					<c:if test="${!empty list}">
