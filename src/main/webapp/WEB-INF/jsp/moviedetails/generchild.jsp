@@ -4,12 +4,11 @@
 <title>Demo of passing data from Child to parent window </title>
 <script langauge="text/javascript">
 function post_value(){
-opener.document.frm.h_starcastName1.value = document.frm.c_name1.value;
-opener.document.frm.h_starcastName2.value = document.frm.c_name2.value;
-opener.document.frm.h_starcastName3.value = document.frm.c_name3.value;
-opener.document.frm.h_starcastName4.value = document.frm.c_name4.value;
-opener.document.frm.h_starcastName5.value = document.frm.c_name5.value;
-opener.document.frm.h_starcastName6.value = document.frm.c_name6.value;
+opener.document.frm.h_genre1.value = document.frm.c_name1.value;
+opener.document.frm.h_genre2.value = document.frm.c_name2.value;
+opener.document.frm.h_genre3.value = document.frm.c_name3.value;
+opener.document.frm.h_genreExtra.value = document.frm.c_name4.value;
+
 
  self.close();
 }
@@ -37,18 +36,7 @@ var w = document.frm.mylist4.selectedIndex;
 var selected_text4 = document.frm.mylist4.options[w].text;
 document.getElementById('c_name4').value = selected_text4;
 }
-function disp_text5()
-{
-var w = document.frm.mylist5.selectedIndex;
-var selected_text5 = document.frm.mylist5.options[w].text;
-document.getElementById('c_name5').value = selected_text5;
-}
-function disp_text6()
-{
-var w = document.frm.mylist6.selectedIndex;
-var selected_text6 = document.frm.mylist6.options[w].text;
-document.getElementById('c_name6').value = selected_text6;
-}
+
 </script>
 </head>
 
@@ -92,24 +80,7 @@ document.getElementById('c_name6').value = selected_text6;
     <option value="0">All</option>
 </select></td>
 <td><input type="text" name="c_name4" id="c_name4" readonly></td></tr>
-<tr><td>
-<select name="mylist5" id="mylist5" size="4" multiple="multiple" onclick="disp_text5();">
-    <option value="1">item 1</option>
-    <option value="2">item 2</option>
-    <option value="3">item 3</option>
-    <option value="4">item 4</option>
-    <option value="0">All</option>
-</select></td>
-<td><input type="text" name="c_name5" id="c_name5" readonly></td></tr>
-<tr><td>
-<select name="mylist6" id="mylist6" size="4" multiple="multiple" onclick="disp_text6();">
-    <option value="1">item 1</option>
-    <option value="2">item 2</option>
-    <option value="3">item 3</option>
-    <option value="4">item 4</option>
-    <option value="0">All</option>
-</select></td>
-<td><input type="text" name="c_name6" id="c_name6" readonly></td></tr>
+
 
 <tr><td><input type=button value='Submit' onclick="post_value();"></td><td></td></tr>
 </table>

@@ -25,9 +25,19 @@
 
 <script language="JavaScript">
  <!-- hide
- function openNewWindow() {
-	 var formName = "starcastnamechild";
- popupWin = window.open(formName,"Ratting","width=550,height=170,left=150,top=200,toolbar=1,status=1,")
+ function openNewWindow(name) {
+	 if(name=='starcastnamechild'){
+		 popupWin = window.open("starcastnamechild","Ratting","width=550,height=170,left=150,top=200,toolbar=1,status=1,")
+	 }
+	 if(name=='creatorchild'){
+		 popupWin = window.open("creatorchild","Ratting","width=550,height=170,left=150,top=200,toolbar=1,status=1,")
+	 }
+	 if(name=='directorchild'){
+		 popupWin = window.open("directorchild","Ratting","width=550,height=170,left=150,top=200,toolbar=1,status=1,")
+	 }
+	 if(name=='generchild'){
+		 popupWin = window.open("generchild","Ratting","width=550,height=170,left=150,top=200,toolbar=1,status=1,")
+	 }
  }
  // done hiding -->
  </script>
@@ -93,17 +103,8 @@
 					<td><input type="text" name="h_starcastName1" id="h_starcastName1" value="${h_starcastName1}" onblur="javascript:validateSize('h_starcastName1',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="starcastName2"><spring:message code="label.starcastName2" /></form:label></td>
-					<td><input type="text" name="h_starcastName2" id="h_starcastName2" value="${h_starcastName2}" readonly="${readonly}" onblur="javascript:validateSize('h_starcastName2',this.value,30);" tabindex="6" ></td>
+					<td><input type="text" name="h_starcastName2" id="h_starcastName2" value="${h_starcastName2}" readonly="${readonly}" onblur="javascript:validateSize('h_starcastName2',this.value,30);" tabindex="6" ><c:if test="${(command == 'add') || (command == 'update')}">&nbsp;<a href="javascript:openNewWindow('starcastnamechild');">Set StarCast Click</a></c:if></td>
 				</tr>
-				<c:if test="${(command == 'add') || (command == 'update')}">
-				<tr>
-					<td></td>
-					<td>&nbsp;<a href="javascript:openNewWindow();">Click</a></td>
-				
-					<td></td>
-					<td>&nbsp;<a href="javascript:openNewWindow();">Click</a></td>
-				</tr>
-				</c:if>
 				<tr>
 					<td><form:label path="starcastName3"><spring:message code="label.starcastName3" /></form:label></td>
 					<td><input type="text" name="h_starcastName3" id="h_starcastName3"  value="${h_starcastName3}" onblur="javascript:validateSize('h_starcastName3',this.value,30);" tabindex="6" ></td>
@@ -111,15 +112,6 @@
 					<td><form:label path="starcastName4"><spring:message code="label.starcastName4" /></form:label></td>
 					<td><input type="text" name="h_starcastName4" id="h_starcastName4"  value="${h_starcastName4}" onblur="javascript:validateSize('h_starcastName4',this.value,30);" tabindex="6" ></td>
 				</tr>
-				<c:if test="${(command == 'add') || (command == 'update')}">
-				<tr>
-					<td></td>
-					<td><form:select path="starcastName3" items="${starcastList}"  onchange="fillTextBox('h_starcastName3',this);" /></td>
-				
-					<td></td>
-					<td><form:select path="starcastName4" items="${starcastList}" onchange="fillTextBox('h_starcastName4',this);" /></td>
-				</tr>
-				</c:if>
 				<tr>
 					<td><form:label path="starcastName5"><spring:message code="label.starcastName5" /></form:label></td>
 					<td><input type="text" name="h_starcastName5" id="h_starcastName5" value="${h_starcastName5}" onblur="javascript:validateSize('h_starcastName5',this.value,30);" tabindex="6" ></td>
@@ -127,31 +119,13 @@
 					<td><form:label path="starcastName6"><spring:message code="label.starcastName6" /></form:label></td>
 					<td><input type="text" name="h_starcastName6" id="h_starcastName6"  value="${h_starcastName6}" onblur="javascript:validateSize('h_starcastName6',this.value,30);" tabindex="6" ></td>
 				</tr>
-				<c:if test="${(command == 'add') || (command == 'update')}">
-				<tr>
-					<td></td>
-					<td><form:select path="starcastName5" items="${starcastList}" onchange="fillTextBox('h_starcastName5',this);" /></td>
-				
-					<td></td>
-					<td><form:select path="starcastName6" items="${starcastList}" onchange="fillTextBox('h_starcastName6',this);" /></td>
-				</tr>
-				</c:if>
 				<tr>
 					<td><form:label path="director1"><spring:message code="label.director1" /></form:label></td>
 					<td><input type="text" name="h_director1" id="h_director1"  value="${h_director1}" onblur="javascript:validateSize('h_director1',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="director2"><spring:message code="label.director2" /></form:label></td>
-					<td><input type="text" name="h_director2" id="h_director2"  value="${h_director2}"  onblur="javascript:validateSize('h_director2',this.value,30);" tabindex="6" ></td>
+					<td><input type="text" name="h_director2" id="h_director2"  value="${h_director2}"  onblur="javascript:validateSize('h_director2',this.value,30);" tabindex="6" ><c:if test="${(command == 'add') || (command == 'update')}">&nbsp;<a href="javascript:openNewWindow('directorchild');">Set Director Click</a></c:if></td>
 				</tr>
-				<c:if test="${(command == 'add') || (command == 'update')}">
-				<tr>
-					<td></td>
-					<td><form:select path="director1" items="${directorList}" onchange="fillTextBox('h_director1',this);" /></td>
-				
-					<td></td>
-					<td><form:select path="director2" items="${directorList}" onchange="fillTextBox('h_director2',this);" /></td>
-				</tr>
-				</c:if>
 				<tr>
 					<td><form:label path="director3"><spring:message code="label.director3" /></form:label></td>
 					<td><input type="text" name="h_director3" id="h_director3" value="${h_director3}"  onblur="javascript:validateSize('h_director3',this.value,30);" tabindex="6" ></td>
@@ -159,47 +133,23 @@
 					<td><form:label path="creator1"><spring:message code="label.creator1" /></form:label></td>
 					<td><input type="text" name="h_creator1" id="h_creator1"  value="${h_creator1}" onblur="javascript:validateSize('h_creator1',this.value,30);" tabindex="6" ></td>
 				</tr>
-				<c:if test="${(command == 'add') || (command == 'update')}">
-				<tr>
-					<td></td>
-					<td><form:select path="director3" items="${directorList}" onchange="fillTextBox('h_director3',this);" /></td>
 				
-					<td></td>
-					<td><form:select path="creator1" items="${creatorList}" onchange="fillTextBox('h_creator1',this);" /></td>
-				</tr>
-				</c:if>
 				<tr>
 					<td><form:label path="creator2"><spring:message code="label.creator2" /></form:label></td>
 					<td><input type="text" name="h_creator2" id="h_creator2" value="${h_creator2}" onblur="javascript:validateSize('h_creator2',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="creator3"><spring:message code="label.creator3" /></form:label></td>
-					<td><input type="text" name="h_creator3" id="h_creator3" value="${h_creator3}"  onblur="javascript:validateSize('h_creator3',this.value,30);" tabindex="6" ></td>
+					<td><input type="text" name="h_creator3" id="h_creator3" value="${h_creator3}"  onblur="javascript:validateSize('h_creator3',this.value,30);" tabindex="6" ><c:if test="${(command == 'add') || (command == 'update')}">&nbsp;<a href="javascript:openNewWindow('creatorchild');">Set Creator Click</a></c:if></td>
 				</tr>
-				<c:if test="${(command == 'add') || (command == 'update')}">
-				<tr>
-					<td></td>
-					<td><form:select path="creator2" items="${creatorList}" onchange="fillTextBox('h_creator2',this);" /></td>
 				
-					<td></td>
-					<td><form:select path="creator3" items="${creatorList}" onchange="fillTextBox('h_creator3',this);" /></td>
-				</tr>
-				</c:if>
 				<tr>
 					<td><form:label path="genre1"><spring:message code="label.genre1" /></form:label></td>
 					<td><input type="text" name="h_genre1" id="h_genre1" value="${h_genre1}"  onblur="javascript:validateSize('h_genre1',this.value,30);" tabindex="6" ></td>
 				
 					<td><form:label path="genre2"><spring:message code="label.genre2" /></form:label></td>
-					<td><input type="text" name="h_genre2" id="h_genre2" value="${h_genre2}" onblur="javascript:validateSize('h_genre2',this.value,30);" tabindex="6" ></td>
+					<td><input type="text" name="h_genre2" id="h_genre2" value="${h_genre2}" onblur="javascript:validateSize('h_genre2',this.value,30);" tabindex="6" ><c:if test="${(command == 'add') || (command == 'update')}">&nbsp;<a href="javascript:openNewWindow('generchild');">Set Gener Click</a></c:if></td>
 				</tr>
-				<c:if test="${(command == 'add') || (command == 'update')}">
-				<tr>
-					<td></td>
-					<td><form:select path="genre1" items="${genreList}" onchange="fillTextBox('h_genre1',this);" /></td>
 				
-					<td></td>
-					<td><form:select path="genre2" items="${genreList}" onchange="fillTextBox('h_genre2',this);" /></td>
-				</tr>
-				</c:if>
 				<tr>
 					<td><form:label path="genre3"><spring:message code="label.genre3" /></form:label></td>
 					<td><input type="text" name="h_genre3" id="h_genre3" value="${h_genre3}" onblur="javascript:validateSize('h_genre3',this.value,30);" tabindex="6" ></td>
@@ -207,15 +157,7 @@
 					<td><form:label path="genreExtra"><spring:message code="label.genreExtra" /></form:label></td>
 					<td><input type="text" name="h_genreExtra" id="h_genreExtra" value="${h_genreExtra}" onblur="javascript:validateSize('h_genreExtra',this.value,30);" tabindex="6" ></td>
 				</tr>
-				<c:if test="${(command == 'add') || (command == 'update')}">
-				<tr>
-					<td></td>
-					<td><form:select path="genre3" items="${genreList}" onchange="fillTextBox('h_genre3',this);" /></td>
 				
-					<td></td>
-					<td><form:select path="genreExtra" items="${genreList}" onchange="fillTextBox('h_genreExtra',this);" /></td>
-				</tr>
-				</c:if>
 				<tr>
 					<td><form:label path="country"><spring:message code="label.country" /></form:label></td>
 					<td>

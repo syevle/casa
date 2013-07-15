@@ -259,13 +259,24 @@ public class MovieDetailsController {
 	
 	// -----------------------------------------------------------------
 	@RequestMapping(value = Constant.STARCASTNAMECHILD, method = RequestMethod.GET)
-	//@RequestMapping(Constant.STARCASTNAMECHILD + "/{name}")
-	//public String starCastChild(@PathVariable("name") String name) {
-	public String starCastChild(Map<String, Object> map,ModelMap model,@ModelAttribute("frmObject") MovieDetails frmObject) {
-/*System.out.println(name);
-System.out.println(name);*/
+	public String starCastChild() {
 		
 		return PATH + Constant.STARCASTNAMECHILD;
+	}
+	@RequestMapping(value = Constant.CREATORCHILD, method = RequestMethod.GET)
+	public String creatorChild() {
+		
+		return PATH + Constant.CREATORCHILD;
+	}
+	@RequestMapping(value = Constant.DIRECTORCHILD, method = RequestMethod.GET)
+	public String directorChild() {
+		
+		return PATH + Constant.DIRECTORCHILD;
+	}
+	@RequestMapping(value = Constant.GENERCHILD, method = RequestMethod.GET)
+	public String generChild() {
+		
+		return PATH + Constant.GENERCHILD;
 	}
 	@RequestMapping(value = Constant.SERCH, method = RequestMethod.GET)
 	public String serch(Map<String, Object> map,ModelMap model,@ModelAttribute("frmObject") MovieDetails frmObject) {

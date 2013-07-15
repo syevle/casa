@@ -17,6 +17,9 @@ public class Constant {
 	public static final String SCHEMA = "/SANTOSH";
 	public static final String MOVIEDETAILS = "/moviedetails";
 	public static final String STARCASTNAMECHILD = "/starcastnamechild";
+	public static final String CREATORCHILD = "/creatorchild";
+	public static final String DIRECTORCHILD = "/directorchild";
+	public static final String GENERCHILD = "/generchild";
 	public static final String DATEFORMAT = "dd-MM-yyyy";
 	
 	
