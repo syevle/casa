@@ -23,7 +23,14 @@
 	  });  
   </script>	
 
-
+<script language="JavaScript">
+ <!-- hide
+ function openNewWindow() {
+	 var formName = "starcastnamechild";
+ popupWin = window.open(formName,"Ratting","width=550,height=170,left=150,top=200,toolbar=1,status=1,")
+ }
+ // done hiding -->
+ </script>
 <c:set var="readonly" value="${readonly}" />
 <c:set var="movId" value="${movId}" />
 
@@ -91,10 +98,10 @@
 				<c:if test="${(command == 'add') || (command == 'update')}">
 				<tr>
 					<td></td>
-					<td><form:select path="starcastName1" items="${starcastList}"  onchange="fillTextBox('h_starcastName1',this);" /></td>
+					<td>&nbsp;<a href="javascript:openNewWindow();">Click</a></td>
 				
 					<td></td>
-					<td><form:select path="starcastName2" items="${starcastList}" onchange="fillTextBox('h_starcastName2',this);" /></td>
+					<td>&nbsp;<a href="javascript:openNewWindow();">Click</a></td>
 				</tr>
 				</c:if>
 				<tr>
