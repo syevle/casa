@@ -27,16 +27,16 @@
  <!-- hide
  function openNewWindow(name) {
 	 if(name=='starcastnamechild'){
-		 popupWin = window.open("starcastnamechild","Ratting","width=550,height=170,left=150,top=200,toolbar=1,status=1,")
+		 popupWin = window.open("/casa/moviedetails/starcastnamechild","Ratting","width=450,height=550,left=150,top=200,toolbar=1,status=1,")
 	 }
 	 if(name=='creatorchild'){
-		 popupWin = window.open("creatorchild","Ratting","width=550,height=170,left=150,top=200,toolbar=1,status=1,")
+		 popupWin = window.open("/casa/moviedetails/creatorchild","Ratting","width=450,height=450,left=150,top=200,toolbar=1,status=1,")
 	 }
 	 if(name=='directorchild'){
-		 popupWin = window.open("directorchild","Ratting","width=550,height=170,left=150,top=200,toolbar=1,status=1,")
+		 popupWin = window.open("/casa/moviedetails/directorchild","Ratting","width=450,height=450,left=150,top=200,toolbar=1,status=1,")
 	 }
 	 if(name=='generchild'){
-		 popupWin = window.open("generchild","Ratting","width=550,height=170,left=150,top=200,toolbar=1,status=1,")
+		 popupWin = window.open("/casa/moviedetails/generchild","Ratting","width=450,height=450,left=150,top=200,toolbar=1,status=1,")
 	 }
  }
  // done hiding -->

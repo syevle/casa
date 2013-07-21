@@ -259,23 +259,23 @@ public class MovieDetailsController {
 	
 	// -----------------------------------------------------------------
 	@RequestMapping(value = Constant.STARCASTNAMECHILD, method = RequestMethod.GET)
-	public String starCastChild() {
-		
+	public String starCastChild(Map<String, Object> map,ModelMap model,@ModelAttribute("frmObject") MovieDetails frmObject) {
+		map.put("starcastList", starcastList());
 		return PATH + Constant.STARCASTNAMECHILD;
 	}
 	@RequestMapping(value = Constant.CREATORCHILD, method = RequestMethod.GET)
-	public String creatorChild() {
-		
+	public String creatorChild(Map<String, Object> map,ModelMap model,@ModelAttribute("frmObject") MovieDetails frmObject) {
+		map.put("creatorList", creatorList());
 		return PATH + Constant.CREATORCHILD;
 	}
 	@RequestMapping(value = Constant.DIRECTORCHILD, method = RequestMethod.GET)
-	public String directorChild() {
-		
+	public String directorChild(Map<String, Object> map,ModelMap model,@ModelAttribute("frmObject") MovieDetails frmObject) {
+		map.put("directorList", directorList());
 		return PATH + Constant.DIRECTORCHILD;
 	}
 	@RequestMapping(value = Constant.GENERCHILD, method = RequestMethod.GET)
-	public String generChild() {
-		
+	public String generChild(Map<String, Object> map,ModelMap model,@ModelAttribute("frmObject") MovieDetails frmObject) {
+		map.put("genreList", genreList());
 		return PATH + Constant.GENERCHILD;
 	}
 	@RequestMapping(value = Constant.SERCH, method = RequestMethod.GET)
